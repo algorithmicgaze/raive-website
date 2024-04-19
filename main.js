@@ -16,15 +16,6 @@ const noiseTexture = twgl.createTexture(gl, { src: "img/noise.png" }, () =>
 );
 const startTime = Date.now();
 
-const anims = {
-  light_dir_x: 0,
-  light_dir_y: 1.0,
-  light_dir_z: 0.1,
-  world_color_r: 1.0,
-  world_color_g: 0.1,
-  world_color_b: 0.1,
-};
-
 function render(time) {
   twgl.resizeCanvasToDisplaySize(gl.canvas);
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -32,7 +23,7 @@ function render(time) {
 
   const uniforms = {
     u_resolution: [gl.canvas.width, gl.canvas.height],
-    u_progress: progress,
+    u_progress: anims.delta,
     u_time: (Date.now() - startTime) / 1000.0,
     u_world_color: [
       anims.world_color_r,
@@ -50,6 +41,16 @@ function render(time) {
   requestAnimationFrame(render);
 }
 
+const anims = {
+  delta: 0,
+  light_dir_x: 0,
+  light_dir_y: 1.0,
+  light_dir_z: 0.1,
+  world_color_r: 1.0,
+  world_color_g: 0.1,
+  world_color_b: 0.1,
+};
+
 const tl = gsap.timeline({
   scrollTrigger: {
     trigger: "main",
@@ -60,6 +61,18 @@ const tl = gsap.timeline({
 });
 
 tl.to(anims, {
+  delta: 0.0,
+  light_dir_x: 0.0,
+  light_dir_y: 1.0,
+  light_dir_z: 0.1,
+  world_color_r: 0.8,
+  world_color_g: 0.1,
+  world_color_b: 0.1,
+  duration: 0.25,
+});
+
+tl.to(anims, {
+  delta: 0.3,
   light_dir_x: 0.0,
   light_dir_y: 1.0,
   light_dir_z: 0.1,
@@ -69,20 +82,22 @@ tl.to(anims, {
   duration: 1.0,
 });
 tl.to(anims, {
+  delta: 0.6,
   light_dir_x: 0.0,
   light_dir_y: 1.0,
   light_dir_z: -0.1,
   world_color_r: 0.8,
   world_color_g: 0.5,
   world_color_b: 0.5,
-  duration: 1,
+  duration: 1.0,
 });
 tl.to(anims, {
+  delta: 1.0,
   light_dir_x: 0.0,
   light_dir_y: -1.0,
   light_dir_z: 0.0,
   world_color_r: 0.7,
   world_color_g: 0.6,
   world_color_b: 0.6,
-  duration: 1,
+  duration: 1.0,
 });
