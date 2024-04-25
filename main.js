@@ -12,7 +12,7 @@ const arrays = {
 const bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays);
 
 const noiseTexture = twgl.createTexture(gl, { src: "img/noise.png" }, () =>
-  requestAnimationFrame(render)
+  requestAnimationFrame(render),
 );
 const startTime = Date.now();
 
@@ -42,13 +42,13 @@ function render(time) {
 }
 
 const anims = {
-  delta: 0,
-  light_dir_x: 0,
-  light_dir_y: 1.0,
+  delta: -1.0,
+  light_dir_x: 0.1,
+  light_dir_y: 0.1,
   light_dir_z: 0.1,
-  world_color_r: 1.0,
-  world_color_g: 0.1,
-  world_color_b: 0.1,
+  world_color_r: 0.5,
+  world_color_g: 0.0,
+  world_color_b: 0.0,
 };
 
 const tl = gsap.timeline({
@@ -61,13 +61,13 @@ const tl = gsap.timeline({
 });
 
 tl.to(anims, {
-  delta: 0.0,
+  delta: -0.8,
   light_dir_x: 0.0,
-  light_dir_y: 1.0,
+  light_dir_y: 0.1,
   light_dir_z: 0.1,
-  world_color_r: 0.8,
-  world_color_g: 0.1,
-  world_color_b: 0.1,
+  world_color_r: 0.6,
+  world_color_g: 0.0,
+  world_color_b: 0.0,
   duration: 0.25,
 });
 
