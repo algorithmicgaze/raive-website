@@ -4,6 +4,11 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>RAIVE Summer School 2024</title>
+        <link rel="preload" as="script" href="https://esm.sh/twgl.js@5.5.4" />
+        <link rel="preload" as="script" href="https://esm.sh/gsap@3.12.5" />
+        <link rel="preload" as="script" href="https://esm.sh/gsap@3.12.5/ScrollTrigger" />
+        <link rel="preload" as="image" href="/img/noise.png" />
+
         <style>
             @font-face {
                 font-family: "Inika";
@@ -229,28 +234,18 @@
             </section>
             <section class="section-intro">
                 <figure>
-                    <img
-                        src="/img/labo21-bunnies.jpg"
-                        alt="notthecenter performing at LAbO 2021"
-                    />
-                    <figcaption>
-                        notthecenter performing at LAbO 2021
-                    </figcaption>
+                    <img src="/img/labo21-bunnies.jpg" alt="notthecenter performing at LAbO 2021" />
+                    <figcaption>notthecenter performing at LAbO 2021</figcaption>
                 </figure>
                 <p>
-                    RAIVE is a laboratory for young creators who already have
-                    some experience and interest on collaborative and
-                    interdisciplinary work. The emphasis will always be on
-                    creating across various disciplines together with other
-                    young creators that have an interest in AI.
+                    RAIVE is a laboratory for young creators who already have some experience and interest on
+                    collaborative and interdisciplinary work. The emphasis will always be on creating across various
+                    disciplines together with other young creators that have an interest in AI.
                 </p>
             </section>
             <section class="section-gallery">
                 <figure>
-                    <img
-                        src="/img/labo21-cyber-sensuality.jpg"
-                        alt="Cyber Sensuality project, LAbO 2021"
-                    />
+                    <img src="/img/labo21-cyber-sensuality.jpg" alt="Cyber Sensuality project, LAbO 2021" />
                     <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
                 </figure>
             </section>
@@ -259,74 +254,50 @@
                     <img src="/img/coaches-giusy.jpg" alt="Giusy Caruso" />
                     <h2>Giusy Caruso</h2>
                     <p>
-                        Giusy Caruso is a pianist and artist-researcher who
-                        blends classical and contemporary music with advanced
-                        technologies like motion capture, virtual reality, and
-                        AI. As chair of the CREATION group at the Royal
-                        Conservatory of Antwerp, she explores the intersection
-                        of art, science, and technology through immersive
-                        "phygital" performances that merge physical and digital
-                        realms. Her concerts, which often feature duets with her
-                        avatar in the Metaverse, challenge traditional formats
-                        and push musical expression into new territories.
-                        Caruso's innovative work has earned recognition such as
-                        the prestigious STARTS Prize from the European
-                        Commission.
+                        Giusy Caruso is a pianist and artist-researcher who blends classical and contemporary music with
+                        advanced technologies like motion capture, virtual reality, and AI. As chair of the CREATION
+                        group at the Royal Conservatory of Antwerp, she explores the intersection of art, science, and
+                        technology through immersive "phygital" performances that merge physical and digital realms. Her
+                        concerts, which often feature duets with her avatar in the Metaverse, challenge traditional
+                        formats and push musical expression into new territories. Caruso's innovative work has earned
+                        recognition such as the prestigious STARTS Prize from the European Commission.
                     </p>
                 </div>
                 <div class="coach">
                     <img src="/img/coaches-isil.jpg" alt="Işıl Bıçakçı" />
                     <h2>Işıl Bıçakçı</h2>
                     <p>
-                        Işıl Bıçakçı (1986) was born and raised in İstanbul.
-                        After graduating from Computer Sciences and realising
-                        coding and programming was not the profession she truly
-                        aimed for, her interests started to shift towards the
-                        performing arts. After studying acting in Theatre
-                        Academy and also performing there, she started her study
-                        of Contemporary Dance at the Mimar Sinan Fine Arts
-                        University State Conservatory in Istanbul. Even before
-                        her graduation in 2015 she had started creating her own
-                        performances that were already showing her talent for
-                        inviting subtle irony and a sense of humour as well as
-                        clarity to her work, which remains recognisable in her
-                        later works.
+                        Işıl Bıçakçı (1986) was born and raised in İstanbul. After graduating from Computer Sciences and
+                        realising coding and programming was not the profession she truly aimed for, her interests
+                        started to shift towards the performing arts. After studying acting in Theatre Academy and also
+                        performing there, she started her study of Contemporary Dance at the Mimar Sinan Fine Arts
+                        University State Conservatory in Istanbul. Even before her graduation in 2015 she had started
+                        creating her own performances that were already showing her talent for inviting subtle irony and
+                        a sense of humour as well as clarity to her work, which remains recognisable in her later works.
                     </p>
                 </div>
                 <div class="coach">
                     <img src="/img/coaches-umut.jpg" alt="Umut Eldem" />
                     <h2>Umut Eldem</h2>
                     <p>
-                        Umut Eldem (1993) is a composer, pianist, and researcher
-                        whose work explores the artistic potential of
-                        synaesthesia, the blending of senses. He studied
-                        composition in Turkey, Italy, and Belgium, earning his
-                        Bachelor's degree from the Mimar Sinan State
-                        Conservatory in Istanbul and his Master's from the Royal
-                        Conservatoire of Antwerp. His post-graduate research at
-                        the latter institution focused on the applicability of
-                        synaesthesia and color as an inter-sensory musical
-                        concept. Eldem's multidisciplinary approach aims to
-                        create immersive experiences that transcend traditional
-                        boundaries between art forms.
+                        Umut Eldem (1993) is a composer, pianist, and researcher whose work explores the artistic
+                        potential of synaesthesia, the blending of senses. He studied composition in Turkey, Italy, and
+                        Belgium, earning his Bachelor's degree from the Mimar Sinan State Conservatory in Istanbul and
+                        his Master's from the Royal Conservatoire of Antwerp. His post-graduate research at the latter
+                        institution focused on the applicability of synaesthesia and color as an inter-sensory musical
+                        concept. Eldem's multidisciplinary approach aims to create immersive experiences that transcend
+                        traditional boundaries between art forms.
                     </p>
                 </div>
                 <div class="coach">
-                    <img
-                        src="/img/coaches-frederik.jpeg"
-                        alt="Frederik De Bleser"
-                    />
+                    <img src="/img/coaches-frederik.jpeg" alt="Frederik De Bleser" />
                     <h2>Frederik De Bleser</h2>
                     <p>
-                        Dr. Frederik De Bleser (º1978) is a researcher and
-                        lecturer at Sint Lucas Antwerp. His research focuses on
-                        the connection between art and technology and the
-                        development of free software tools for artificial
-                        intelligence and data visualization. He is co-founder of
-                        the Experimental Media Research Group (EMRG). He
-                        coordinates the master in digital media at Sint Lucas,
-                        and works as a freelance data visualisation artist,
-                        creating projects for Belgian news and online democracy
+                        Dr. Frederik De Bleser (º1978) is a researcher and lecturer at Sint Lucas Antwerp. His research
+                        focuses on the connection between art and technology and the development of free software tools
+                        for artificial intelligence and data visualization. He is co-founder of the Experimental Media
+                        Research Group (EMRG). He coordinates the master in digital media at Sint Lucas, and works as a
+                        freelance data visualisation artist, creating projects for Belgian news and online democracy
                         platforms.
                     </p>
                 </div>
@@ -334,10 +305,7 @@
 
             <section class="section-location">
                 <h2>Location</h2>
-                <img
-                    src="/img/desingel.jpg"
-                    alt="Royal Conservatory of Antwerp"
-                />
+                <img src="/img/desingel.jpg" alt="Royal Conservatory of Antwerp" />
                 <p>
                     Royal Conservatory of Antwerp<br />
                     Desguinlei 25<br />
@@ -354,26 +322,20 @@
             <section class="section-sign-up">
                 <h2>Sign Up</h2>
                 <p>RAIVE is currently accepting sign ups.</p>
-                <p>
-                    Young creators with interdisciplinary skills or interest can
-                    apply.
-                </p>
+                <p>Young creators with interdisciplinary skills or interest can apply.</p>
                 <a href="#" class="cta">Sign Up</a>
             </section>
 
             <section class="section-about">
                 <h2>About</h2>
                 <p>
-                    RAIVE is organized by The Algorithmic Gaze and CREATIE, two
-                    research groups situated in Antwerp that combine technology
-                    and arts.
+                    RAIVE is organized by The Algorithmic Gaze and CREATIE, two research groups situated in Antwerp that
+                    combine technology and arts.
                 </p>
                 <p>
                     Contact the organizers:<br />
-                    <a href="mailto:myrthe.bokelmann@kdg.be">Myrthe Bokelmann</a
-                    ><br />
-                    <a href="mailto:celia.tortpujol@kdg.be">Cèlia Tort Pujol</a
-                    ><br />
+                    <a href="mailto:myrthe.bokelmann@kdg.be">Myrthe Bokelmann</a><br />
+                    <a href="mailto:celia.tortpujol@kdg.be">Cèlia Tort Pujol</a><br />
                 </p>
             </section>
         </main>

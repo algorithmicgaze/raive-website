@@ -1,6 +1,6 @@
-import * as twgl from "https://cdn.skypack.dev/twgl.js";
-import gsap from "https://cdn.skypack.dev/gsap";
-import ScrollTrigger from "https://cdn.skypack.dev/gsap/ScrollTrigger";
+import * as twgl from "https://esm.sh/twgl.js@5.5.4";
+import gsap from "https://esm.sh/gsap@3.12.5";
+import ScrollTrigger from "https://esm.sh/gsap@3.12.5/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,7 +11,7 @@ const arrays = {
 };
 const bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays);
 
-const noiseTexture = twgl.createTexture(gl, { src: "img/noise.png" }, () => {
+const noiseTexture = twgl.createTexture(gl, { src: "/img/noise.png" }, () => {
   requestAnimationFrame(render);
   gsap.to(anims, {
     delta: -1.0,
@@ -35,11 +35,7 @@ function render(time) {
     u_resolution: [gl.canvas.width, gl.canvas.height],
     u_progress: anims.delta,
     u_time: (Date.now() - startTime) / 1000.0,
-    u_world_color: [
-      anims.world_color_r,
-      anims.world_color_g,
-      anims.world_color_b,
-    ],
+    u_world_color: [anims.world_color_r, anims.world_color_g, anims.world_color_b],
     u_noise: noiseTexture,
     u_light_dir: [anims.light_dir_x, anims.light_dir_y, anims.light_dir_z],
   };
