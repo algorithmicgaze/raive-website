@@ -8,6 +8,7 @@
         <link rel="preload" as="script" href="https://esm.sh/gsap@3.12.5" />
         <link rel="preload" as="script" href="https://esm.sh/gsap@3.12.5/ScrollTrigger" />
         <link rel="preload" as="image" href="/img/noise.png" />
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
 
         <style>
             @font-face {
@@ -93,8 +94,8 @@
                 background: linear-gradient(
                     180deg,
                     rgba(0, 0, 0, 0) 0%,
-                    rgba(0, 0, 0, 0.3) 10%,
-                    rgba(0, 0, 0, 0.3) 90%,
+                    rgba(0, 0, 0, 0.5) 10%,
+                    rgba(0, 0, 0, 0.5) 90%,
                     rgba(0, 0, 0, 0) 100%
                 );
                 display: flex;
@@ -114,12 +115,8 @@
             }
 
             .section-gallery {
-                height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
                 background: rgba(0, 0, 0, 0.9);
-                padding: 20px;
+                padding: 100px 20px;
                 background: linear-gradient(
                     180deg,
                     rgba(0, 0, 0, 0) 0%,
@@ -127,6 +124,10 @@
                     rgba(0, 0, 0, 0.9) 98%,
                     rgba(0, 0, 0, 0) 100%
                 );
+
+                .carousel {
+                    min-height: 80vh;
+                }
             }
 
             .section-coaches {
@@ -208,6 +209,11 @@
                 background-color: rgba(0, 0, 0, 0.6);
                 color: #aaa;
 
+                .container {
+                    max-width: 960px;
+                    margin: 0 auto;
+                }
+
                 .cta {
                     display: inline-block;
                     background: transparent;
@@ -233,6 +239,29 @@
                 flex-direction: column;
                 background-color: rgba(0, 0, 0, 0.6);
                 color: #eee;
+
+                .container {
+                    max-width: 960px;
+                    margin: 0 auto;
+                }
+
+                a {
+                    color: inherit;
+                }
+            }
+
+            .section-footer {
+                margin: 50vh 0 0 0;
+                padding: 5vh 1rem;
+                display: flex;
+                flex-direction: column;
+                background-color: rgba(0, 0, 0, 0.6);
+                color: #eee;
+
+                .container {
+                    max-width: 960px;
+                    margin: 0 auto;
+                }
 
                 a {
                     color: inherit;
@@ -290,10 +319,44 @@
                 </div>
             </section>
             <section class="section-gallery">
-                <figure>
-                    <img src="/img/labo21-cyber-sensuality.jpg" alt="Cyber Sensuality project, LAbO 2021" />
-                    <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
-                </figure>
+                <div class="carousel">
+                    <figure>
+                        <img
+                            src="/img/labo21-cyber-sensuality.jpg"
+                            alt="Cyber Sensuality project, LAbO 2021"
+                            width="1920"
+                        />
+                        <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
+                    </figure>
+                    <figure>
+                        <img
+                            src="/img/labo21-cyber-sensuality.jpg"
+                            alt="Cyber Sensuality project, LAbO 2021"
+                            width="1920"
+                        />
+                        <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
+                    </figure>
+                    <figure>
+                        <img
+                            src="/img/labo21-cyber-sensuality.jpg"
+                            alt="Cyber Sensuality project, LAbO 2021"
+                            width="1920"
+                        />
+                        <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
+                    </figure>
+                </div>
+            </section>
+            <section class="section-about">
+                <div class="container">
+                    <p>
+                        The culmination of this week-long journey is a public exhibition held in De Gele Zaal of the
+                        Conservatory. This exhibition isn't about presenting polished pieces but rather the raw,
+                        intriguing results of a week's exploration of art and technology. It's an invitation to the
+                        public to witness the process and the progress of works that sit at the intersection of multiple
+                        disciplines, brought to life by the next generation of artists who are as interested in the
+                        mechanics of creation as they are in the aesthetics of their final output.
+                    </p>
+                </div>
             </section>
             <section class="section-coaches">
                 <h2>Coaches</h2>
@@ -365,29 +428,30 @@
                 </p>
             </section>
 
-            <section class="section-pricing">
-                <h2>Pricing</h2>
-                <p>The total price of the summer school is € 300,00.</p>
-            </section>
-
             <section class="section-sign-up">
-                <h2>Sign Up</h2>
-                <p>RAIVE is currently accepting sign ups.</p>
-                <p>Young creators with interdisciplinary skills or interest can apply.</p>
-                <a href="#" class="cta">Sign Up</a>
+                <div class="container">
+                    <h2>Sign Up</h2>
+                    <p>
+                        The total price of the summer school is € 300,00. Dependending on the circumstances, your
+                        institute might cover this fee through scholarschips.
+                    </p>
+                    <p>RAIVE is currently accepting sign ups:</p>
+                    <a href="#" class="cta">Sign Up</a>
+                </div>
             </section>
 
-            <section class="section-about">
-                <h2>About</h2>
-                <p>
-                    RAIVE is organized by The Algorithmic Gaze and CREATIE, two research groups situated in Antwerp that
-                    combine technology and arts.
-                </p>
-                <p>
-                    Contact the organizers:<br />
-                    <a href="mailto:myrthe.bokelmann@kdg.be">Myrthe Bokelmann</a><br />
-                    <a href="mailto:celia.tortpujol@kdg.be">Cèlia Tort Pujol</a><br />
-                </p>
+            <section class="section-footer">
+                <div class="container">
+                    <p>
+                        RAIVE is organized by The Algorithmic Gaze and CREATIE, two research groups situated in Antwerp
+                        that combine technology and arts.
+                    </p>
+                    <p>
+                        Contact the organizers:<br />
+                        <a href="mailto:myrthe.bokelmann@kdg.be">Myrthe Bokelmann</a><br />
+                        <a href="mailto:celia.tortpujol@kdg.be">Cèlia Tort Pujol</a><br />
+                    </p>
+                </div>
             </section>
         </main>
 
@@ -565,5 +629,15 @@
             }
         </script>
         <script type="module" src="main.js"></script>
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+        <script>
+            const carousel = document.querySelector(".carousel");
+            const flkty = new Flickity(carousel, {
+                wrapAround: true,
+                autoPlay: 5000,
+                pageDots: true,
+                prevNextButtons: false,
+            });
+        </script>
     </body>
 </html>
