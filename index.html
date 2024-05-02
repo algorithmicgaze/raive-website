@@ -106,6 +106,13 @@
                 }
             }
 
+            .section-about {
+                .container {
+                    max-width: 960px;
+                    margin: 0 auto;
+                }
+            }
+
             .section-gallery {
                 height: 100vh;
                 display: flex;
@@ -123,22 +130,41 @@
             }
 
             .section-coaches {
-                min-height: 100vh;
-                display: grid;
-                padding: 1rem;
-                grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-
-                .coach img {
-                    max-width: 300px;
-                }
-
-                .coach h2 {
-                    font-size: 1.5rem;
+                h2 {
                     margin: 0 0 1rem 0;
+                    font-size: 2rem;
+                    line-height: 1;
+                    text-align: center;
                 }
+                .container {
+                    min-height: 100vh;
+                    display: grid;
+                    gap: 1rem;
+                    padding: 1rem;
+                    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
 
-                .coach p {
-                    font-size: 1rem;
+                    .coach {
+                        background-color: rgba(0, 0, 0, 0.6);
+                        border-radius: 10px;
+                        padding: 10px;
+                        padding-top: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .coach img {
+                        max-width: 300px;
+                    }
+
+                    .coach h3 {
+                        font-size: 1.5rem;
+                        margin: 0 0 1rem 0;
+                    }
+
+                    .coach p {
+                        font-size: 1rem;
+                    }
                 }
             }
 
@@ -238,10 +264,30 @@
                     <figcaption>notthecenter performing at LAbO 2021</figcaption>
                 </figure>
                 <p>
-                    RAIVE is a laboratory for young creators who already have some experience and interest on
-                    collaborative and interdisciplinary work. The emphasis will always be on creating across various
-                    disciplines together with other young creators that have an interest in AI.
+                    RAIVE is a laboratory where young artists from diverse disciplines such as dance, music, technology,
+                    and visual arts come together to redefine the boundaries of their crafts through the lens of
+                    interdisciplinary collaboration. Here, the application of AI in art is approached much like creative
+                    writing is to literature, focusing on demystifying digital tools and hacking the conventions of
+                    traditional art-making.
                 </p>
+            </section>
+
+            <section class="section-about">
+                <div class="container">
+                    <p>
+                        The program is structured to encourage autonomy while providing access to expert guidance.
+                        Participants are divided into groups, with each benefiting from the insights of four coaches
+                        skilled in different areas of the arts. These coaches not only mentor but also share their
+                        personal artistic journeys through lectures and performances, enriching the learning atmosphere.
+                    </p>
+                    <p>
+                        Introductory workshops will guide students in how to work with AI using
+                        <a href="https://figmentapp.com/">Figment</a>, a generative AI tool from Sint Lucas Antwerpen,
+                        and <a href="https://cycling74.com/">Max/MSP</a> for creating interactive audio. These sessions
+                        empower participants to take their art in new and unexpected ways, balancing between the craft
+                        of creation and the freedom of exploration.
+                    </p>
+                </div>
             </section>
             <section class="section-gallery">
                 <figure>
@@ -250,56 +296,61 @@
                 </figure>
             </section>
             <section class="section-coaches">
-                <div class="coach">
-                    <img src="/img/coaches-giusy.jpg" alt="Giusy Caruso" />
-                    <h2>Giusy Caruso</h2>
-                    <p>
-                        Giusy Caruso is a pianist and artist-researcher who blends classical and contemporary music with
-                        advanced technologies like motion capture, virtual reality, and AI. As chair of the CREATION
-                        group at the Royal Conservatory of Antwerp, she explores the intersection of art, science, and
-                        technology through immersive "phygital" performances that merge physical and digital realms. Her
-                        concerts, which often feature duets with her avatar in the Metaverse, challenge traditional
-                        formats and push musical expression into new territories. Caruso's innovative work has earned
-                        recognition such as the prestigious STARTS Prize from the European Commission.
-                    </p>
-                </div>
-                <div class="coach">
-                    <img src="/img/coaches-isil.jpg" alt="Işıl Bıçakçı" />
-                    <h2>Işıl Bıçakçı</h2>
-                    <p>
-                        Işıl Bıçakçı (1986) was born and raised in İstanbul. After graduating from Computer Sciences and
-                        realising coding and programming was not the profession she truly aimed for, her interests
-                        started to shift towards the performing arts. After studying acting in Theatre Academy and also
-                        performing there, she started her study of Contemporary Dance at the Mimar Sinan Fine Arts
-                        University State Conservatory in Istanbul. Even before her graduation in 2015 she had started
-                        creating her own performances that were already showing her talent for inviting subtle irony and
-                        a sense of humour as well as clarity to her work, which remains recognisable in her later works.
-                    </p>
-                </div>
-                <div class="coach">
-                    <img src="/img/coaches-umut.jpg" alt="Umut Eldem" />
-                    <h2>Umut Eldem</h2>
-                    <p>
-                        Umut Eldem (1993) is a composer, pianist, and researcher whose work explores the artistic
-                        potential of synaesthesia, the blending of senses. He studied composition in Turkey, Italy, and
-                        Belgium, earning his Bachelor's degree from the Mimar Sinan State Conservatory in Istanbul and
-                        his Master's from the Royal Conservatoire of Antwerp. His post-graduate research at the latter
-                        institution focused on the applicability of synaesthesia and color as an inter-sensory musical
-                        concept. Eldem's multidisciplinary approach aims to create immersive experiences that transcend
-                        traditional boundaries between art forms.
-                    </p>
-                </div>
-                <div class="coach">
-                    <img src="/img/coaches-frederik.jpeg" alt="Frederik De Bleser" />
-                    <h2>Frederik De Bleser</h2>
-                    <p>
-                        Dr. Frederik De Bleser (º1978) is a researcher and lecturer at Sint Lucas Antwerp. His research
-                        focuses on the connection between art and technology and the development of free software tools
-                        for artificial intelligence and data visualization. He is co-founder of the Experimental Media
-                        Research Group (EMRG). He coordinates the master in digital media at Sint Lucas, and works as a
-                        freelance data visualisation artist, creating projects for Belgian news and online democracy
-                        platforms.
-                    </p>
+                <h2>Coaches</h2>
+                <div class="container">
+                    <div class="coach">
+                        <img src="/img/coaches-giusy.jpg" alt="Giusy Caruso" />
+                        <h3>Giusy Caruso</h3>
+                        <p>
+                            Giusy Caruso is a pianist and artist-researcher who blends classical and contemporary music
+                            with advanced technologies like motion capture, virtual reality, and AI. As chair of the
+                            CREATION group at the Royal Conservatory of Antwerp, she explores the intersection of art,
+                            science, and technology through immersive "phygital" performances that merge physical and
+                            digital realms. Her concerts, which often feature duets with her avatar in the Metaverse,
+                            challenge traditional formats and push musical expression into new territories. Caruso's
+                            innovative work has earned recognition such as the prestigious STARTS Prize from the
+                            European Commission.
+                        </p>
+                    </div>
+                    <div class="coach">
+                        <img src="/img/coaches-isil.jpg" alt="Işıl Bıçakçı" />
+                        <h3>Işıl Bıçakçı</h3>
+                        <p>
+                            Işıl Bıçakçı (1986) was born and raised in İstanbul. After graduating from Computer Sciences
+                            and realising coding and programming was not the profession she truly aimed for, her
+                            interests started to shift towards the performing arts. After studying acting in Theatre
+                            Academy and also performing there, she started her study of Contemporary Dance at the Mimar
+                            Sinan Fine Arts University State Conservatory in Istanbul. Even before her graduation in
+                            2015 she had started creating her own performances that were already showing her talent for
+                            inviting subtle irony and a sense of humour as well as clarity to her work, which remains
+                            recognisable in her later works.
+                        </p>
+                    </div>
+                    <div class="coach">
+                        <img src="/img/coaches-umut.jpg" alt="Umut Eldem" />
+                        <h3>Umut Eldem</h3>
+                        <p>
+                            Umut Eldem (1993) is a composer, pianist, and researcher whose work explores the artistic
+                            potential of synaesthesia, the blending of senses. He studied composition in Turkey, Italy,
+                            and Belgium, earning his Bachelor's degree from the Mimar Sinan State Conservatory in
+                            Istanbul and his Master's from the Royal Conservatoire of Antwerp. His post-graduate
+                            research at the latter institution focused on the applicability of synaesthesia and color as
+                            an inter-sensory musical concept. Eldem's multidisciplinary approach aims to create
+                            immersive experiences that transcend traditional boundaries between art forms.
+                        </p>
+                    </div>
+                    <div class="coach">
+                        <img src="/img/coaches-frederik.jpeg" alt="Frederik De Bleser" />
+                        <h3>Frederik De Bleser</h3>
+                        <p>
+                            Dr. Frederik De Bleser (º1978) is a researcher and lecturer at Sint Lucas Antwerp. His
+                            research focuses on the connection between art and technology and the development of free
+                            software tools for artificial intelligence and data visualization. He is co-founder of the
+                            Experimental Media Research Group (EMRG). He coordinates the master in digital media at Sint
+                            Lucas, and works as a freelance data visualisation artist, creating projects for Belgian
+                            news and online democracy platforms.
+                        </p>
+                    </div>
                 </div>
             </section>
 
