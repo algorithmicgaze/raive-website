@@ -72,7 +72,7 @@
             }
 
             .section-hero {
-                height: 100vh;
+                height: 95vh;
                 padding: 20px;
                 display: flex;
                 flex-direction: column;
@@ -106,6 +106,7 @@
                 );
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
                 align-items: center;
             }
 
@@ -113,6 +114,14 @@
                 .section-intro {
                     flex-direction: row;
                 }
+            }
+
+            .section-intro img {
+                max-height: 80vh;
+            }
+
+            .section-intro p {
+                max-width: 60ch;
             }
 
             .section-about .container {
@@ -177,7 +186,7 @@
 
             .section-location {
                 margin: 50vh 0;
-                padding: 5vh 0;
+                padding: 5vh 2rem;
                 display: flex;
                 flex-direction: column;
                 background-color: rgba(0, 0, 0, 0.9);
@@ -189,11 +198,26 @@
                 line-height: 1;
             }
 
-            .section-location img {
-                object-fit: cover;
+            .section-location .side-by-side {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
             }
 
-            .section-location p {
+            @media (min-width: 800px) {
+                .section-location .side-by-side {
+                    flex-direction: row;
+                    gap: 2rem;
+                }
+            }
+
+            .section-location img {
+                flex: 1;
+                overflow: hidden;
+            }
+
+            .section-location div {
+                flex: 1;
                 text-align: right;
                 font-size: 0.8rem;
                 line-height: 1.5;
@@ -241,7 +265,7 @@
             .section-sign-up .day {
                 display: inline-block;
                 width: 12ch;
-                text-align: right;
+                text-align: left;
             }
 
             .section-about {
@@ -420,37 +444,50 @@
 
             <section class="section-location">
                 <h2>Location</h2>
-                <img src="/img/desingel.jpg" alt="Royal Conservatory of Antwerp" />
-                <p>
-                    Royal Conservatory of Antwerp<br />
-                    Desguinlei 25<br />
-                    2018 Antwerp<br />
-                    Belgium
-                </p>
+                <div class="side-by-side">
+                    <img src="/img/desingel.jpg" alt="Royal Conservatory of Antwerp" />
+                    <div class="location-info">
+                        <p>
+                            The Royal Conservatory of Antwerp is located near the vibrant Zuid district and serves as a
+                            hub for musical and performative talent. The Conservatory shares a campus with deSingel, an
+                            acclaimed arts center known for its eclectic mix of music, dance, and theater performances.
+                            Together, they form a cultural beacon within the city. The neighborhood around the
+                            Conservatory is lively and artistic, dotted with galleries, cafés, and boutiques, reflecting
+                            the creative spirit of the institution.
+                        </p>
+                        <address>
+                            Royal Conservatory of Antwerp<br />
+                            Desguinlei 25<br />
+                            2018 Antwerp<br />
+                            Belgium
+                        </address>
+                    </div>
+                </div>
             </section>
 
             <section class="section-sign-up">
                 <div class="container">
                     <h2>Planning</h2>
                     <div class="planning">
-                        <strong class="day">End of May:</strong> registration deadline<br />
-                        <strong class="day">End of June:</strong> first online meeting with all participants and
-                        coaches, discussing first ideas and potential collaborations<br /><br />
-                        <strong class="day">Mon Sep 2:</strong> introductions, group formation, introductory workshops,
-                        coach presentation/performance<br />
-                        <strong class="day">Tue Sep 3:</strong> morning warm-up, group project work, introductory
-                        workshops, coach presentation/performance<br />
-                        <strong class="day">Wed Sep 4:</strong> morning warm-up, group project work, coach
-                        presentations/performances<br />
-                        <strong class="day">Thu Sep 5:</strong> morning warm-up, group project work, project setup<br />
-                        <strong class="day">Fri Sep 5:</strong> morning warm-up, group project work, final
-                        presentation<br />
+                        <strong class="day">29th of May:</strong> registration deadline<br />
+                        <strong class="day">11th of June:</strong> first online meeting with all participants and
+                        coaches<br /><br />
+                        <strong class="day">Mon Sep 2: </strong>welcome, workshop, group project work, dinner<br />
+                        <strong class="day">Tue Sep 3: </strong>workshop, group project work, sharing session<br />
+                        <strong class="day">Wed Sep 4: </strong>morning warm-up, group project work, workshop,
+                        performance<br />
+                        <strong class="day">Thu Sep 5: </strong>morning warm-up, group project work, group project
+                        try-out<br />
+                        <strong class="day">Fri Sep 6: </strong>morning warm-up, setting up, group project work, final
+                        presentation, dinner and afterparty<br />
+                        <strong class="day">Sat Sep 7: </strong>feedback session
                     </div>
                     <p>
-                        The total price of the summer school is € 300,00.<br />Dependending on the circumstances, your
-                        institute might cover this fee through scholarschips.
+                        The total price of the summer school is € 300,00.<br />Accommodation and travel costs are not
+                        covered by the organisation, but depending on the circumstances, your institute might cover the
+                        fee and the related costs through scholarships.
                     </p>
-                    <p>RAIVE is currently accepting sign ups:</p>
+                    <p>Ready to RAIVE? Registrations are open! Sign up here:</p>
                     <a href="#" class="cta">Sign Up</a>
                 </div>
             </section>
@@ -458,11 +495,11 @@
             <section class="section-footer">
                 <div class="container">
                     <p>
-                        RAIVE is organized by The Algorithmic Gaze and CREATIE, two research groups situated in Antwerp
+                        RAIVE is organised by The Algorithmic Gaze and CREATIE, two research groups situated in Antwerp
                         that combine technology and arts.
                     </p>
                     <p>
-                        Contact the organizers:<br />
+                        Contact the organisers:<br />
                         <a href="mailto:myrthe.bokelmann@kdg.be">Myrthe Bokelmann</a><br />
                         <a href="mailto:celia.tortpujol@kdg.be">Cèlia Tort Pujol</a><br />
                     </p>
