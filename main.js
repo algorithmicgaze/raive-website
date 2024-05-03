@@ -27,7 +27,7 @@ const noiseTexture = twgl.createTexture(gl, { src: "/img/noise.png" }, () => {
 const startTime = Date.now();
 
 function render(time) {
-  twgl.resizeCanvasToDisplaySize(gl.canvas);
+  twgl.resizeCanvasToDisplaySize(gl.canvas, 1);
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
   // const progress = tl.progress();
 
