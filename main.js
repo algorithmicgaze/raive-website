@@ -11,7 +11,7 @@ const arrays = {
 };
 const bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays);
 
-const noiseTexture = twgl.createTexture(gl, { src: "/img/noise.png" }, () => {
+const noiseTexture = twgl.createTexture(gl, { src: "/img/noise.png", min: gl.LINEAR, max: gl.LINEAR }, () => {
   requestAnimationFrame(render);
   gsap.to(anims, {
     delta: -1.0,
@@ -27,7 +27,7 @@ const noiseTexture = twgl.createTexture(gl, { src: "/img/noise.png" }, () => {
 const startTime = Date.now();
 
 function render(time) {
-  twgl.resizeCanvasToDisplaySize(gl.canvas, 1);
+  twgl.resizeCanvasToDisplaySize(gl.canvas);
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
   // const progress = tl.progress();
 
@@ -48,7 +48,7 @@ function render(time) {
 }
 
 const anims = {
-  delta: -4.0,
+  delta: -0.0,
   light_dir_x: 0.1,
   light_dir_y: 0.1,
   light_dir_z: 0.1,

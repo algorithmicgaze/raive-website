@@ -555,6 +555,71 @@
                 return 130.0 * dot(m, g);
             }
 
+            float getSeed(vec2 coord) {
+                return texture2D(u_noise, coord).r;
+            }
+
+            float perlinNoise(vec2 p) {
+                vec2 pos = floor(p);
+                vec2 posx = pos + vec2(1.0, 0.0);
+                vec2 posy = pos + vec2(0.0, 1.0);
+                vec2 posxy = pos + vec2(1.0, 1.0);
+
+                float r = getSeed(pos / u_resolution);
+                float rx = getSeed(posx / u_resolution);
+                float ry = getSeed(posy / u_resolution);
+                float rxy = getSeed(posxy / u_resolution);
+
+                vec2 inter = smoothstep(0.0, 1.0, fract(p));
+                float n0 = mix(r, rx, inter.x);
+                float n1 = mix(ry, rxy, inter.x);
+                return mix(n0, n1, inter.y);
+            }
+
+            // 2D Simplex noise function
+            float simplexNoise(vec2 p) {
+                const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+                vec2 i = floor(p + dot(p, C.yy));
+                vec2 x0 = p - i + dot(i, C.xx);
+
+                vec2 i1;
+                // Determine which simplex cell we're in
+                i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+
+                // A step of (1,0) in x0.y > x0.x or (0,1) in x0.x > x0.y
+                vec4 x12 = x0.xyxy + C.xxzz;
+                x12.xy -= i1;
+
+                // Offsets for the second and third corners of the simplex
+                i = mod(i, 289.0);
+                vec3 p3 = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+
+                vec3 m = max(0.5 - vec3(dot(x0, x0), dot(x12.xy, x12.xy), dot(x12.zw, x12.zw)), 0.0);
+                m = m*m;
+                m = m*m;
+
+                // Gradients: 41 points uniformly over a line, mapped onto a diamond.
+                vec3 x = 2.0 * fract(p3 * C.www) - 1.0;
+                vec3 h = abs(x) - 0.5;
+                vec3 ox = floor(x + 0.5);
+                vec3 a0 = x - ox;
+
+                // Normalise gradients implicitly by scaling m
+                m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+
+                // Compute final noise value at P
+                vec3 g;
+                g.x = a0.x * x0.x + h.x * x0.y;
+                g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+                return 130.0 * dot(m, g);
+            }
+
+            // Utility function to permute vector components
+            // vec3 permute(vec3 x) {
+            //     return mod(((x * 34.0) + 1.0) * x, 289.0);
+            // }
+
+
             float sdSphere(vec3 p, float r) {
                 return length(p) - r;
             }
@@ -565,9 +630,15 @@
             }
 
             float sdTerrain(vec3 p) {
-                float height = snoise(p.xz * 0.1) * 2.0 + snoise(p.xz * 0.4) * 0.2; // Generate height using Simplex noise
-                //vec4 hh = noised(vec3(p.xz * 0.01, 0.0)) * 2.0 + noised(vec3(p.xz * 0.04, 1.0)) * 2.0; // Generate height using Simplex noise
-                //float height = hh.x;
+                // float height = snoise(p.xz * 0.1) * 2.0 + snoise(p.xz * 0.4) * 0.2; // Generate height using Simplex noise
+                // vec4 hh = noised(vec3(p.xz * 0.0001, 0.0)) * 2.0 + noised(vec3(p.xz * 0.0002, 1.0)) * 0.2; // Generate height using Simplex noise
+                //p.xz *= 0.0001;
+                // float height = perlinNoise(p.xz * 0.01) * 2.0 + perlinNoise(p.xz * 0.04) * 0.2; // Generate height using Perlin noise
+                // float height = perlinNoise(p.xz * 0.0001) * 2.0;
+                float height = texture2D(u_noise, p.xz / u_resolution * 0.5).r * 3.0; + texture2D(u_noise, p.xz / u_resolution * 0.2).r * 0.2;
+                // float height = simplexNoise(p.xz * 0.1) * 2.0;
+
+                // float height = hh.x;
                 return p.y - height;
             }
 
