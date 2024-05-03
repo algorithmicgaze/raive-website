@@ -44,6 +44,11 @@
                 font-family: "Inika", sans-serif;
             }
 
+            p {
+                font-size: 18pt;
+                line-height: 2;
+            }
+
             #c {
                 position: fixed;
                 top: 0;
@@ -73,19 +78,20 @@
                 flex-direction: column;
                 justify-content: flex-end;
                 max-width: 800px;
+            }
 
-                h1 {
-                    margin: 0 0 1rem 0;
-                    font-size: 2rem;
-                    line-height: 1;
-                }
-                h2 {
-                    margin: 0 0 1rem 0;
-                }
+            .section-hero h1 {
+                margin: 0 0 1rem 0;
+                font-size: 2rem;
+                line-height: 1;
+            }
 
-                h3 {
-                    margin: 0 0 1rem 0;
-                }
+            .section-hero h2 {
+                margin: 0 0 1rem 0;
+            }
+
+            .section-hero h3 {
+                margin: 0 0 1rem 0;
             }
 
             .section-intro {
@@ -101,17 +107,17 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+            }
 
-                @media (min-width: 800px) {
+            @media (min-width: 800px) {
+                .section-intro {
                     flex-direction: row;
                 }
             }
 
-            .section-about {
-                .container {
-                    max-width: 960px;
-                    margin: 0 auto;
-                }
+            .section-about .container {
+                max-width: 960px;
+                margin: 0 auto;
             }
 
             .section-gallery {
@@ -124,51 +130,49 @@
                     rgba(0, 0, 0, 0.9) 98%,
                     rgba(0, 0, 0, 0) 100%
                 );
-
-                .carousel {
-                    min-height: 80vh;
-                }
             }
 
-            .section-coaches {
-                h2 {
-                    margin: 0 0 1rem 0;
-                    font-size: 2rem;
-                    line-height: 1;
-                    text-align: center;
-                }
-                .container {
-                    min-height: 100vh;
-                    display: grid;
-                    gap: 1rem;
-                    padding: 1rem;
-                    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            .section-gallery .carousel {
+                min-height: 80vh;
+            }
 
-                    .coach {
-                        background-color: rgba(0, 0, 0, 0.3);
-                        border-radius: 10px;
-                        padding: 10px;
-                        padding-top: 20px;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                    }
+            .section-coaches h2 {
+                margin: 0 0 1rem 0;
+                font-size: 2rem;
+                line-height: 1;
+                text-align: center;
+            }
+            .section-coaches .container {
+                min-height: 100vh;
+                display: grid;
+                gap: 1rem;
+                padding: 1rem;
+                grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            }
 
-                    .coach img {
-                        max-width: 300px;
-                    }
+            .section-coaches .coach {
+                background-color: rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                padding: 10px;
+                padding-top: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
-                    .coach h3 {
-                        font-size: 1.5rem;
-                        margin: 1rem 0 1rem 0;
-                        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-                    }
+            .section-coaches .coach img {
+                max-width: 300px;
+            }
 
-                    .coach p {
-                        font-size: 1rem;
-                        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-                    }
-                }
+            .section-coaches .coach h3 {
+                font-size: 1.5rem;
+                margin: 1rem 0 1rem 0;
+                text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            }
+
+            .section-coaches .coach p {
+                font-size: 1rem;
+                text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             }
 
             .section-location {
@@ -177,23 +181,23 @@
                 display: flex;
                 flex-direction: column;
                 background-color: rgba(0, 0, 0, 0.9);
+            }
 
-                h2 {
-                    margin: 0 0 1rem 0;
-                    font-size: 4rem;
-                    line-height: 1;
-                }
+            .section-location h2 {
+                margin: 0 0 1rem 0;
+                font-size: 4rem;
+                line-height: 1;
+            }
 
-                img {
-                    object-fit: cover;
-                }
+            .section-location img {
+                object-fit: cover;
+            }
 
-                p {
-                    text-align: right;
-                    font-size: 0.8rem;
-                    line-height: 1.5;
-                    padding-right: 1rem;
-                }
+            .section-location p {
+                text-align: right;
+                font-size: 0.8rem;
+                line-height: 1.5;
+                padding-right: 1rem;
             }
 
             .section-pricing {
@@ -210,34 +214,34 @@
                 padding: 5vh 1rem;
                 background-color: rgba(0, 0, 0, 0.6);
                 color: #eee;
+            }
 
-                .container {
-                    max-width: 960px;
-                    margin: 0 auto;
-                }
+            .section-sign-up .container {
+                max-width: 960px;
+                margin: 0 auto;
+            }
 
-                .cta {
-                    display: inline-block;
-                    background: transparent;
-                    color: inherit;
-                    border: 1px solid #aaa;
-                    padding: 1rem;
-                    border-radius: 80px;
-                    cursor: pointer;
-                    text-decoration: none;
-                    transition: 0.3s;
+            .section-sign-up .cta {
+                display: inline-block;
+                background: transparent;
+                color: inherit;
+                border: 1px solid #aaa;
+                padding: 1rem;
+                border-radius: 80px;
+                cursor: pointer;
+                text-decoration: none;
+                transition: 0.3s;
+            }
 
-                    &:hover {
-                        background: #aaa;
-                        color: white;
-                    }
-                }
+            .section-sign-up .cta:hover {
+                background: #aaa;
+                color: white;
+            }
 
-                .day {
-                    display: inline-block;
-                    width: 12ch;
-                    text-align: right;
-                }
+            .section-sign-up .day {
+                display: inline-block;
+                width: 12ch;
+                text-align: right;
             }
 
             .section-about {
@@ -247,15 +251,15 @@
                 flex-direction: column;
                 background-color: rgba(0, 0, 0, 0.6);
                 color: #eee;
+            }
 
-                .container {
-                    max-width: 960px;
-                    margin: 0 auto;
-                }
+            .section-about .container {
+                max-width: 960px;
+                margin: 0 auto;
+            }
 
-                a {
-                    color: inherit;
-                }
+            .section-about a {
+                color: inherit;
             }
 
             .section-footer {
@@ -265,24 +269,15 @@
                 flex-direction: column;
                 background-color: rgba(0, 0, 0, 0.6);
                 color: #eee;
-
-                .container {
-                    max-width: 960px;
-                    margin: 0 auto;
-                }
-
-                a {
-                    color: inherit;
-                }
             }
 
-            h1 {
-                font-size: 72pt;
+            .section-footer .container {
+                max-width: 960px;
+                margin: 0 auto;
             }
 
-            p {
-                font-size: 18pt;
-                line-height: 2;
+            .section-footer a {
+                color: inherit;
             }
         </style>
     </head>
@@ -356,11 +351,11 @@
                 <div class="container">
                     <p>
                         The culmination of this week-long journey is a public exhibition held in De Gele Zaal of the
-                        Conservatory. This exhibition isn't about presenting polished pieces but rather the raw,
-                        intriguing results of a week's exploration of art and technology. It's an invitation to the
-                        public to witness the process and the progress of works that sit at the intersection of multiple
-                        disciplines, brought to life by the next generation of artists who are as interested in the
-                        mechanics of creation as they are in the aesthetics of their final output.
+                        Royal Conservatory of Antwerp. This presentation isn't about showing polished pieces but rather
+                        the raw, intriguing results of a week's exploration of art and technology. It's an invitation to
+                        the public to witness the process and the progress of works that sit at the intersection of
+                        multiple disciplines, brought to life by the next generation of artists who are as interested in
+                        the mechanics of creation as they are in the aesthetics of their final output.
                     </p>
                 </div>
             </section>
@@ -412,12 +407,12 @@
                         <img src="/img/coaches-frederik.jpeg" alt="Frederik De Bleser" />
                         <h3>Frederik De Bleser</h3>
                         <p>
-                            Dr. Frederik De Bleser (º1978) is a researcher and lecturer at Sint Lucas Antwerp. His
-                            research focuses on the connection between art and technology and the development of free
-                            software tools for artificial intelligence and data visualization. He is co-founder of the
-                            Experimental Media Research Group (EMRG). He coordinates the master in digital media at Sint
-                            Lucas, and works as a freelance data visualisation artist, creating projects for Belgian
-                            news and online democracy platforms.
+                            Frederik De Bleser (1978) is a researcher and lecturer at Sint Lucas Antwerp. His research
+                            focuses on the connection between art and technology and the development of free software
+                            tools for artificial intelligence and data visualization. He is co-founder of the
+                            Algorithmic Gaze Research Group. He coordinates the master in digital media at Sint Lucas,
+                            and works as a freelance data visualisation artist, creating projects for Belgian news and
+                            online democracy platforms.
                         </p>
                     </div>
                 </div>
