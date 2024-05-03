@@ -14,10 +14,10 @@ const bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays);
 const noiseTexture = twgl.createTexture(gl, { src: "/img/noise.png", min: gl.LINEAR, max: gl.LINEAR }, () => {
   requestAnimationFrame(render);
   gsap.to(anims, {
-    delta: -1.0,
-    world_color_r: 1.0,
-    world_color_g: 0.2,
-    world_color_b: 0.2,
+    delta: 0.5,
+    world_color_r: 0.2,
+    world_color_g: 0.1,
+    world_color_b: 0.1,
     duration: 2.0,
     ease: "power4.out",
     onComplete: buildTimeline,
@@ -68,41 +68,42 @@ function buildTimeline() {
   });
 
   tl.from(anims, {
-    delta: -1.0,
-    world_color_r: 1.0,
-    world_color_g: 0.2,
-    world_color_b: 0.2,
-  });
-
-  tl.to(anims, {
-    delta: -0.8,
-    light_dir_x: 0.0,
-    light_dir_y: 0.1,
-    light_dir_z: 0.1,
-    world_color_r: 0.6,
-    world_color_g: 0.0,
-    world_color_b: 0.0,
-    duration: 0.25,
+    delta: 0.5,
+    world_color_r: 0.2,
+    world_color_g: 0.1,
+    world_color_b: 0.1,
+    duration: 0.2,
   });
 
   tl.to(anims, {
     delta: 0.3,
     light_dir_x: 0.0,
+    light_dir_y: 0.1,
+    light_dir_z: 0.1,
+    world_color_r: 0.5,
+    world_color_g: 0.0,
+    world_color_b: 0.2,
+    duration: 0.25,
+  });
+
+  tl.to(anims, {
+    delta: 0.1,
+    light_dir_x: 0.0,
     light_dir_y: 1.0,
     light_dir_z: 0.1,
-    world_color_r: 0.8,
-    world_color_g: 0.1,
-    world_color_b: 0.1,
+    world_color_r: 0.2,
+    world_color_g: 0.2,
+    world_color_b: 0.2,
     duration: 1.0,
   });
   tl.to(anims, {
-    delta: 0.6,
+    delta: -0.8,
     light_dir_x: 0.0,
     light_dir_y: 1.0,
     light_dir_z: -0.1,
-    world_color_r: 0.8,
-    world_color_g: 0.5,
-    world_color_b: 0.5,
+    world_color_r: 0.2,
+    world_color_g: 0.0,
+    world_color_b: 0.1,
     duration: 1.0,
   });
   tl.to(anims, {
@@ -110,9 +111,9 @@ function buildTimeline() {
     light_dir_x: 0.0,
     light_dir_y: -1.0,
     light_dir_z: 0.0,
-    world_color_r: 0.7,
-    world_color_g: 0.6,
-    world_color_b: 0.6,
+    world_color_r: 0.2,
+    world_color_g: 0.1,
+    world_color_b: 0.1,
     duration: 1.0,
   });
 }
