@@ -245,21 +245,23 @@
                 margin: 0 auto;
             }
 
-            .section-sign-up .cta {
+            .cta {
                 display: inline-block;
                 background: transparent;
                 color: inherit;
-                border: 1px solid #aaa;
+                border: 2px solid rgba(255, 255, 255, 0.3);
                 padding: 1rem;
                 border-radius: 80px;
                 cursor: pointer;
                 text-decoration: none;
-                transition: 0.3s;
+                transition: 0.5s;
             }
 
-            .section-sign-up .cta:hover {
-                background: #aaa;
+            .cta:hover {
+                background: #a00;
                 color: white;
+                border-color: #600;
+                box-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
             }
 
             .section-sign-up .day {
@@ -319,13 +321,20 @@
                     <img src="/img/labo21-bunnies.jpg" alt="notthecenter performing at LAbO 2021" />
                     <figcaption>notthecenter performing at LAbO 2021</figcaption>
                 </figure>
-                <p>
-                    RAIVE is a laboratory where young artists from diverse disciplines such as dance, music, technology,
-                    and visual arts come together to redefine the boundaries of their crafts through the lens of
-                    interdisciplinary collaboration. Here, the application of AI in art is approached much like creative
-                    writing is to literature, focusing on demystifying digital tools and hacking the conventions of
-                    traditional art-making.
-                </p>
+                <div>
+                    <p>
+                        RAIVE is a laboratory where young artists from diverse disciplines such as dance, music,
+                        technology, and visual arts come together to redefine the boundaries of their crafts through the
+                        lens of interdisciplinary collaboration. Here, the application of AI in art is approached much
+                        like creative writing is to literature, focusing on demystifying digital tools and hacking the
+                        conventions of traditional art-making.
+                    </p>
+                    <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSdorxQf4OVFC0OJIoUE786OeNkWOsr9mAE9VTsES5Ta2HWeJg/viewform"
+                        class="cta"
+                        >Sign Up</a
+                    >
+                </div>
             </section>
 
             <section class="section-about">
@@ -524,6 +533,7 @@
             uniform vec2 u_resolution;
             uniform float u_time;
             uniform float u_progress;
+            uniform float u_z_offset;
             uniform vec3 u_world_color;
             uniform sampler2D u_noise;
             uniform vec3 u_light_dir;
@@ -564,6 +574,7 @@
             }
 
             float scene(vec3 p) {
+                p.z += u_z_offset;
                 float scene1 = sdTerrain(p - vec3(1.0, -1.0 + u_progress, 25.0 + u_time * 0.01));
 
                 float rep = 2.4;

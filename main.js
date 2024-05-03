@@ -25,6 +25,10 @@ const noiseTexture = twgl.createTexture(gl, { src: "/img/noise.png", min: gl.LIN
 });
 
 const startTime = Date.now();
+const ctaAnims = {
+  superSpeed: 0.0,
+};
+let zOffset = 0.0;
 
 function render(time) {
   twgl.resizeCanvasToDisplaySize(gl.canvas);
@@ -34,6 +38,7 @@ function render(time) {
   const uniforms = {
     u_resolution: [gl.canvas.width, gl.canvas.height],
     u_progress: anims.delta,
+    u_z_offset: zOffset,
     u_time: (Date.now() - startTime) / 1000.0,
     u_world_color: [anims.world_color_r, anims.world_color_g, anims.world_color_b],
     u_noise: noiseTexture,
@@ -43,6 +48,8 @@ function render(time) {
   twgl.setBuffersAndAttributes(gl, programInfo, bufferInfo);
   twgl.setUniforms(programInfo, uniforms);
   twgl.drawBufferInfo(gl, bufferInfo, gl.TRIANGLES);
+
+  zOffset -= ctaAnims.superSpeed;
 
   requestAnimationFrame(render);
 }
@@ -117,3 +124,21 @@ function buildTimeline() {
     duration: 1.0,
   });
 }
+
+document.querySelectorAll(".cta").forEach((cta) => {
+  cta.addEventListener("mouseenter", () => {
+    gsap.to(ctaAnims, {
+      superSpeed: 0.1,
+      duration: 2.0,
+      overwrite: "auto",
+    });
+  });
+
+  cta.addEventListener("mouseleave", () => {
+    gsap.to(ctaAnims, {
+      superSpeed: 0.0,
+      duration: 1.0,
+      overwrite: "auto",
+    });
+  });
+});
