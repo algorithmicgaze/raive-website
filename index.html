@@ -1,7 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RAIVE Summer School 2024</title>
@@ -12,676 +11,672 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
 
     <style>
-        @font-face {
-            font-family: "Inika";
-            font-style: normal;
-            font-weight: 400;
-            src: url("/fonts/inika-v21-latin-regular.woff2") format("woff2");
-            font-display: swap;
-        }
+      @font-face {
+        font-family: "Inika";
+        font-style: normal;
+        font-weight: 400;
+        src: url("/fonts/inika-v21-latin-regular.woff2") format("woff2");
+        font-display: swap;
+      }
 
-        @font-face {
-            font-family: "Inika";
-            font-style: normal;
-            font-weight: 700;
-            src: url("/fonts/inika-v21-latin-700.woff2") format("woff2");
-            font-display: swap;
-        }
+      @font-face {
+        font-family: "Inika";
+        font-style: normal;
+        font-weight: 700;
+        src: url("/fonts/inika-v21-latin-700.woff2") format("woff2");
+        font-display: swap;
+      }
 
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        img {
-            max-width: 100%;
-        }
+      img {
+        max-width: 100%;
+      }
 
-        html {
-            font-size: 16px;
-        }
+      html {
+        font-size: 16px;
+      }
 
-        body {
-            margin: 0;
-            font-family: "Inika", sans-serif;
-        }
+      body {
+        margin: 0;
+        font-family: "Inika", sans-serif;
+      }
 
+      p {
+        font-size: 14pt;
+        line-height: 1.8;
+      }
+
+      p.small {
+        font-size: 12pt;
+        line-height: 1.5;
+      }
+
+      @media (min-width: 768px) {
         p {
-            font-size: 14pt;
-            line-height: 1.8;
+          font-size: 18pt;
+          line-height: 2;
         }
 
         p.small {
-            font-size: 12pt;
-            line-height: 1.5;
+          font-size: 14pt;
+          line-height: 1.8;
         }
+      }
 
-        @media (min-width: 768px) {
-            p {
-                font-size: 18pt;
-                line-height: 2;
-            }
+      #c {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+      }
 
-            p.small {
-                font-size: 14pt;
-                line-height: 1.8;
-            }
-        }
+      main {
+        position: relative;
+        z-index: 1;
+        color: white;
+      }
 
-        #c {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-        }
+      figcaption {
+        font-size: 0.8rem;
+        line-height: 1.4;
+      }
 
-        main {
-            position: relative;
-            z-index: 1;
-            color: white;
-        }
+      .section-hero {
+        height: 95vh;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        max-width: 800px;
+      }
 
-        figcaption {
-            font-size: 0.8rem;
-            line-height: 1.4;
-        }
+      .section-hero h1 {
+        margin: 0 0 1rem 0;
+        font-size: 2rem;
+        line-height: 1;
+      }
 
-        .section-hero {
-            height: 95vh;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            max-width: 800px;
-        }
+      .section-hero h2 {
+        margin: 0 0 1rem 0;
+      }
 
-        .section-hero h1 {
-            margin: 0 0 1rem 0;
-            font-size: 2rem;
-            line-height: 1;
-        }
+      .section-hero h3 {
+        margin: 0 0 1rem 0;
+      }
 
-        .section-hero h2 {
-            margin: 0 0 1rem 0;
-        }
+      .section-intro {
+        margin: 50vh 0;
+        padding: 100px 1rem;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.5) 10%,
+          rgba(0, 0, 0, 0.5) 90%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
-        .section-hero h3 {
-            margin: 0 0 1rem 0;
-        }
-
+      @media (min-width: 800px) {
         .section-intro {
-            margin: 50vh 0;
-            padding: 100px 1rem;
-            background: linear-gradient(180deg,
-                    rgba(0, 0, 0, 0) 0%,
-                    rgba(0, 0, 0, 0.5) 10%,
-                    rgba(0, 0, 0, 0.5) 90%,
-                    rgba(0, 0, 0, 0) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+          flex-direction: row;
         }
+      }
 
-        @media (min-width: 800px) {
-            .section-intro {
-                flex-direction: row;
-            }
-        }
+      .section-intro img {
+        max-height: 80vh;
+      }
 
-        .section-intro img {
-            max-height: 80vh;
-        }
+      .section-intro p {
+        max-width: 60ch;
+      }
 
-        .section-intro p {
-            max-width: 60ch;
-        }
+      .section-about .container {
+        max-width: 960px;
+        margin: 0 auto;
+      }
 
-        .section-about .container {
-            max-width: 960px;
-            margin: 0 auto;
-        }
+      .section-gallery {
+        background: rgba(0, 0, 0, 0.9);
+        padding: 100px 20px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.9) 2%,
+          rgba(0, 0, 0, 0.9) 98%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
 
-        .section-gallery {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 100px 20px;
-            background: linear-gradient(180deg,
-                    rgba(0, 0, 0, 0) 0%,
-                    rgba(0, 0, 0, 0.9) 2%,
-                    rgba(0, 0, 0, 0.9) 98%,
-                    rgba(0, 0, 0, 0) 100%);
-        }
+      .section-gallery figure {
+        margin: 0;
+      }
 
-        .section-gallery figure {
-            margin: 0;
-        }
+      .section-coaches h2 {
+        margin: 0 0 1rem 0;
+        font-size: 2rem;
+        line-height: 1;
+        text-align: center;
+      }
 
-        .section-coaches h2 {
-            margin: 0 0 1rem 0;
-            font-size: 2rem;
-            line-height: 1;
-            text-align: center;
-        }
+      .section-coaches .container {
+        min-height: 100vh;
+        display: grid;
+        gap: 1rem;
+        padding: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr));
+      }
 
-        .section-coaches .container {
-            min-height: 100vh;
-            display: grid;
-            gap: 1rem;
-            padding: 1rem;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr));
-        }
+      .section-coaches .coach {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 10px;
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-        .section-coaches .coach {
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 10px;
-            padding-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+      .section-coaches .coach img {
+        max-width: 300px;
+      }
 
-        .section-coaches .coach img {
-            max-width: 300px;
-        }
+      .section-coaches .coach h3 {
+        font-size: 1.5rem;
+        margin: 1rem 0 1rem 0;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
 
-        .section-coaches .coach h3 {
-            font-size: 1.5rem;
-            margin: 1rem 0 1rem 0;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        }
+      .section-coaches .coach p {
+        font-size: 1rem;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
 
-        .section-coaches .coach p {
-            font-size: 1rem;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        }
+      .section-coaches .coach p.link {
+        margin: 0;
+      }
 
-        .section-coaches .coach p.link {
-            margin: 0;
-        }
+      .section-coaches .coach a {
+        text-decoration: underline;
+        color: inherit;
+      }
 
-        .section-coaches .coach a {
-            text-decoration: underline;
-            color: inherit;
-        }
+      .section-location {
+        margin: 50vh 0;
+        padding: 5vh 2rem;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
 
-        .section-location {
-            margin: 50vh 0;
-            padding: 5vh 2rem;
-            display: flex;
-            flex-direction: column;
-            background-color: rgba(0, 0, 0, 0.9);
-        }
+      .section-location h2 {
+        margin: 0 0 1rem 0;
+        font-size: 4rem;
+        line-height: 1;
+      }
 
-        .section-location h2 {
-            margin: 0 0 1rem 0;
-            font-size: 4rem;
-            line-height: 1;
-        }
+      .section-location .side-by-side {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
+      .section-location img {
+        flex: 1;
+        overflow: hidden;
+        object-fit: contain;
+      }
+
+      .section-location div {
+        flex: 1;
+        font-size: 0.8rem;
+        line-height: 1.5;
+        padding-right: 1rem;
+      }
+
+      .section-location p {
+        margin-top: 0;
+      }
+
+      @media (min-width: 800px) {
         .section-location .side-by-side {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .section-location img {
-            flex: 1;
-            overflow: hidden;
-            object-fit: contain;
+          flex-direction: row;
+          gap: 2rem;
         }
 
         .section-location div {
-            flex: 1;
-            font-size: 0.8rem;
-            line-height: 1.5;
-            padding-right: 1rem;
+          text-align: right;
         }
+      }
 
-        .section-location p {
-            margin-top: 0;
-        }
+      .section-pricing {
+        margin: 50vh 0;
+        padding: 5vh 1rem;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.6);
+        color: #666;
+      }
 
-        @media (min-width: 800px) {
-            .section-location .side-by-side {
-                flex-direction: row;
-                gap: 2rem;
-            }
+      .section-sign-up {
+        margin: 50vh 0;
+        padding: 5vh 1rem;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #eee;
+      }
 
-            .section-location div {
-                text-align: right;
-            }
-        }
+      .section-sign-up .container {
+        max-width: 960px;
+        margin: 0 auto;
+      }
 
-        .section-pricing {
-            margin: 50vh 0;
-            padding: 5vh 1rem;
-            display: flex;
-            flex-direction: column;
-            background-color: rgba(255, 255, 255, 0.6);
-            color: #666;
-        }
+      .cta {
+        display: inline-block;
+        background: transparent;
+        color: inherit;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 1rem;
+        border-radius: 80px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.5s;
+      }
 
-        .section-sign-up {
-            margin: 50vh 0;
-            padding: 5vh 1rem;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: #eee;
-        }
+      .cta:hover {
+        background: #a00;
+        color: white;
+        border-color: #600;
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
+      }
 
-        .section-sign-up .container {
-            max-width: 960px;
-            margin: 0 auto;
-        }
+      .section-sign-up .day {
+        display: inline-block;
+        width: 12ch;
+        text-align: left;
+      }
 
-        .cta {
-            display: inline-block;
-            background: transparent;
-            color: inherit;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 1rem;
-            border-radius: 80px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: 0.5s;
-        }
+      .section-about {
+        margin: 50vh 0;
+        padding: 5vh 1rem;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #eee;
+      }
 
-        .cta:hover {
-            background: #a00;
-            color: white;
-            border-color: #600;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
-        }
+      .section-about .container {
+        max-width: 960px;
+        margin: 0 auto;
+      }
 
-        .section-sign-up .day {
-            display: inline-block;
-            width: 12ch;
-            text-align: left;
-        }
+      .section-about a {
+        color: inherit;
+      }
 
-        .section-about {
-            margin: 50vh 0;
-            padding: 5vh 1rem;
-            display: flex;
-            flex-direction: column;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: #eee;
-        }
+      .section-footer {
+        margin: 50vh 0 0 0;
+        padding: 5vh 1rem;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #eee;
+      }
 
-        .section-about .container {
-            max-width: 960px;
-            margin: 0 auto;
-        }
+      .section-footer .container {
+        max-width: 960px;
+        margin: 0 auto;
+      }
 
-        .section-about a {
-            color: inherit;
-        }
-
-        .section-footer {
-            margin: 50vh 0 0 0;
-            padding: 5vh 1rem;
-            display: flex;
-            flex-direction: column;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: #eee;
-        }
-
-        .section-footer .container {
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .section-footer a {
-            color: inherit;
-        }
+      .section-footer a {
+        color: inherit;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <canvas id="c"></canvas>
     <main>
-        <section class="section-hero">
-            <h1>RAIVE AI Summer School</h1>
-            <h2>September 2-7, 2024</h2>
-            <h3>Royal Conservatory of Antwerp</h3>
-        </section>
-        <section class="section-intro">
-            <figure>
-                <img src="/img/labo21-alexandra.jpg"
-                    alt="Alexandra Fraser performing at LAbO 2021 — Photo by Erik Berkey" />
-                <figcaption>Alexandra Fraser performing at LAbO 2021<br>Photo by Erik Berkey</figcaption>
-            </figure>
-            <div>
-                <p>
-                    RAIVE is a laboratory for young artists from diverse disciplines such as dance, music, technology,
-                    and visual arts. During this late summer school, students come together to redefine the boundaries
-                    of their craft through the lens of interdisciplinary collaboration. Here, the application of AI in
-                    art is approached much like creative writing is to literature, focusing on demystifying digital
-                    tools and hacking the conventions of traditional art-making.
-                </p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdorxQf4OVFC0OJIoUE786OeNkWOsr9mAE9VTsES5Ta2HWeJg/viewform"
-                    class="cta">Sign Up</a>
-            </div>
-        </section>
+      <section class="section-hero">
+        <h1>RAIVE AI Summer School</h1>
+        <h2>September 2-7, 2024</h2>
+        <h3>Royal Conservatory of Antwerp</h3>
+      </section>
+      <section class="section-intro">
+        <figure>
+          <img src="/img/labo21-alexandra.jpg" alt="Alexandra Fraser performing at LAbO 2021 — Photo by Erik Berkey" />
+          <figcaption>Alexandra Fraser performing at LAbO 2021<br />Photo by Erik Berkey</figcaption>
+        </figure>
+        <div>
+          <p>
+            RAIVE is a laboratory for young artists from diverse disciplines such as dance, music, technology, and
+            visual arts. During this late summer school, students come together to redefine the boundaries of their
+            craft through the lens of interdisciplinary collaboration. Here, the application of AI in art is approached
+            much like creative writing is to literature, focusing on demystifying digital tools and hacking the
+            conventions of traditional art-making.
+          </p>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdorxQf4OVFC0OJIoUE786OeNkWOsr9mAE9VTsES5Ta2HWeJg/viewform"
+            class="cta"
+            >Sign Up</a
+          >
+        </div>
+      </section>
 
-        <section class="section-about">
-            <div class="container">
-                <p>
-                    The programme is structured to encourage autonomy while providing access to expert guidance. As
-                    participants, you will be divided into groups in which you will work for one week. During this
-                    process you both learn from each other and benefit from the insights of four coaches, skilled in
-                    different areas within the arts. These coaches are there to mentor as well as share their personal
-                    artistic journeys through lectures and performances, enriching the learning atmosphere.
-                </p>
-                <p>
-                    Introductory workshops will guide you in how to work with AI and interactive audio. These sessions
-                    aim to empower you and your group to take your art into new and unexpected realms, balancing between
-                    the craft of creation and the freedom of exploration.
-                </p>
-            </div>
-        </section>
-        <section class="section-gallery">
-            <div class="carousel">
-                <figure>
-                    <img src="/img/labo21-klaas.jpg" alt="Klaas Vos at LAbO 2021" width="1920" />
-                    <figcaption>Klaas Vos at LAbO 2021 — Photo by Erik Berkey</figcaption>
-                </figure>
-                <figure>
-                    <img src="/img/labo21-nika.jpg" alt="Cyber Sensuality project, LAbO 2021" width="1920" />
-                    <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
-                </figure>
-                <figure>
-                    <img src="/img/labo21-martina-scan.jpg" alt="Martina Menegon, LAbO 2021" width="1920" />
-                    <figcaption>Martina Menegon, LAbO 2021</figcaption>
-                </figure>
-                <figure>
-                    <img src="/img/labo21-myrthe-celia-leonie.jpg" alt="Mytrhe, Cèlia and Leonie at LAbO 2021"
-                        width="1920" />
-                    <figcaption>Mytrhe, Cèlia and Leonie at LAbO 2021</figcaption>
-                </figure>
-                <figure>
-                    <img src="/img/labo21-alex-madina.jpg" alt="Cyber Sensuality project, LAbO 2021" width="1920" />
-                    <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
-                </figure>
-                <figure>
-                    <img src="/img/labo21-outside.jpg" alt="notthecenter performing at LAbO 2021" width="1920" />
-                    <figcaption>notthecenter performing at LAbO 2021 — Photo by Erik Berkey</figcaption>
-                </figure>
-            </div>
-        </section>
-        <section class="section-about">
-            <div class="container">
-                <p>
-                    The culmination of this week-long journey is a public presentation held in De Gele Zaal of the Royal
-                    Conservatory of Antwerp. This sharing isn't about showing polished pieces but rather the raw,
-                    intriguing results of a week's exploration of art and technology. It's an invitation to the public
-                    to witness the process and the progress of works that sit at the intersection of multiple
-                    disciplines, brought to life by the next generation of artists who are as interested in the
-                    mechanics of creation as they are in the aesthetics of their final output.
-                </p>
-            </div>
-        </section>
-        <section class="section-coaches">
-            <h2>Coaches</h2>
-            <div class="container">
-                <div class="coach">
-                    <img src="/img/coaches-giusy.jpg" alt="Giusy Caruso" />
-                    <h3>Giusy Caruso</h3>
-                    <p>
-                        Giusy Caruso is a pianist and artist-researcher who blends classical and contemporary music
-                        with advanced technologies like motion capture, virtual reality, and AI. As chair of the
-                        CREATION group at the Royal Conservatory of Antwerp, she explores the intersection of art,
-                        science, and technology through immersive "phygital" performances that merge physical and
-                        digital realms. Her concerts, which often feature duets with her avatar in the Metaverse,
-                        challenge traditional formats and push musical expression into new territories. Caruso's
-                        innovative work has earned recognition such as the prestigious STARTS Prize from the
-                        European Commission.
-                    </p>
-                    <p class="link"><a target="_blank" href="https://www.giusycaruso.com">giusycaruso.com</a></p>
-                </div>
-                <div class="coach">
-                    <img src="/img/coaches-isil.jpg" alt="Işıl Bıçakçı" />
-                    <h3>Işıl Bıçakçı</h3>
-                    <p>
-                        Işıl Bıçakçı was born and raised in İstanbul. After graduating from Computer Sciences
-                        and realising coding and programming was not the profession she truly aimed for, her
-                        interests started to shift towards the performing arts. After studying acting in Theatre
-                        Academy and also performing there, she started her study of Contemporary Dance at the Mimar
-                        Sinan Fine Arts University State Conservatory in Istanbul. After her graduation and working for
-                        Istanbul State Opera and Ballet for years, she started creating her own performances that were
-                        already showing her talent for inviting subtle irony and a sense of humour as well as clarity to
-                        her work, which remains recognisable in her later works.
-                    </p>
-                    <p class="link"><a target="_blank" href="https://www.isilbicakci.com/">isilbicakci.com</a></p>
-                </div>
-                <div class="coach">
-                    <img src="/img/coaches-umut.jpg" alt="Umut Eldem" />
-                    <h3>Umut Eldem</h3>
-                    <p>
-                        Umut Eldem is a composer, researcher, and creative programmer. He works as the coordinator of
-                        the research group CREATION at Royal Conservatoire Antwerp, where he gives courses on music
-                        theory and audiovisual composition. As a Max Certified Trainer, he teaches and regularly
-                        organises workshops on creative coding for musicians. His compositions and research focus on the
-                        exploration of synaesthesia as an artistic medium. He has given lectures on his research of
-                        synaesthesia, and had his audiovisual works and installations combining sound and colours
-                        presented in many countries around the world.
-                    </p>
-                    <p class="link"><a target="_blank" href="https://umuteldem.com/">umuteldem.com</a></p>
-                </div>
-                <div class="coach">
-                    <img src="/img/coaches-frederik.jpeg" alt="Frederik De Bleser" />
-                    <h3>Frederik De Bleser</h3>
-                    <p>
-                        Frederik De Bleser is a researcher and lecturer at Sint Lucas Antwerp. His research
-                        focuses on the connection between art and technology and the development of free software
-                        tools for artificial intelligence and data visualization. He is co-founder of the
-                        Algorithmic Gaze Research Group. He coordinates the master in digital media at Sint Lucas,
-                        and works as a freelance data visualisation artist, creating projects for Belgian news and
-                        online democracy platforms.
-                    </p>
-                    <p class="link"><a target="_blank" href="https://enigmeta.com/">enigmeta.com</a></p>
-                </div>
-            </div>
-        </section>
+      <section class="section-about">
+        <div class="container">
+          <p>
+            The programme is structured to encourage autonomy while providing access to expert guidance. As
+            participants, you will be divided into groups in which you will work for one week. During this process you
+            both learn from each other and benefit from the insights of four coaches, skilled in different areas within
+            the arts. These coaches are there to mentor as well as share their personal artistic journeys through
+            lectures and performances, enriching the learning atmosphere.
+          </p>
+          <p>
+            Introductory workshops will guide you in how to work with AI and interactive audio. These sessions aim to
+            empower you and your group to take your art into new and unexpected realms, balancing between the craft of
+            creation and the freedom of exploration.
+          </p>
+        </div>
+      </section>
+      <section class="section-gallery">
+        <div class="carousel">
+          <figure>
+            <img src="/img/labo21-klaas.jpg" alt="Klaas Vos at LAbO 2021" width="1920" />
+            <figcaption>Klaas Vos at LAbO 2021 — Photo by Erik Berkey</figcaption>
+          </figure>
+          <figure>
+            <img src="/img/labo21-nika.jpg" alt="Cyber Sensuality project, LAbO 2021" width="1920" />
+            <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
+          </figure>
+          <figure>
+            <img src="/img/labo21-martina-scan.jpg" alt="Martina Menegon, LAbO 2021" width="1920" />
+            <figcaption>Martina Menegon, LAbO 2021</figcaption>
+          </figure>
+          <figure>
+            <img src="/img/labo21-myrthe-celia-leonie.jpg" alt="Mytrhe, Cèlia and Leonie at LAbO 2021" width="1920" />
+            <figcaption>Mytrhe, Cèlia and Leonie at LAbO 2021</figcaption>
+          </figure>
+          <figure>
+            <img src="/img/labo21-alex-madina.jpg" alt="Cyber Sensuality project, LAbO 2021" width="1920" />
+            <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
+          </figure>
+          <figure>
+            <img src="/img/labo21-outside.jpg" alt="notthecenter performing at LAbO 2021" width="1920" />
+            <figcaption>notthecenter performing at LAbO 2021 — Photo by Erik Berkey</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="section-about">
+        <div class="container">
+          <p>
+            The culmination of this week-long journey is a public presentation held in De Gele Zaal of the Royal
+            Conservatory of Antwerp. This sharing isn't about showing polished pieces but rather the raw, intriguing
+            results of a week's exploration of art and technology. It's an invitation to the public to witness the
+            process and the progress of works that sit at the intersection of multiple disciplines, brought to life by
+            the next generation of artists who are as interested in the mechanics of creation as they are in the
+            aesthetics of their final output.
+          </p>
+        </div>
+      </section>
+      <section class="section-coaches">
+        <h2>Coaches</h2>
+        <div class="container">
+          <div class="coach">
+            <img src="/img/coaches-giusy.jpg" alt="Giusy Caruso" />
+            <h3>Giusy Caruso</h3>
+            <p>
+              Giusy Caruso is a pianist and artist-researcher who blends classical and contemporary music with advanced
+              technologies like motion capture, virtual reality, and AI. As chair of the CREATION group at the Royal
+              Conservatory of Antwerp, she explores the intersection of art, science, and technology through immersive
+              "phygital" performances that merge physical and digital realms. Her concerts, which often feature duets
+              with her avatar in the Metaverse, challenge traditional formats and push musical expression into new
+              territories. Caruso's innovative work has earned recognition such as the prestigious STARTS Prize from the
+              European Commission.
+            </p>
+            <p class="link"><a target="_blank" href="https://www.giusycaruso.com">giusycaruso.com</a></p>
+          </div>
+          <div class="coach">
+            <img src="/img/coaches-isil.jpg" alt="Işıl Bıçakçı" />
+            <h3>Işıl Bıçakçı</h3>
+            <p>
+              Işıl Bıçakçı was born and raised in İstanbul. After graduating from Computer Sciences and realising coding
+              and programming was not the profession she truly aimed for, her interests started to shift towards the
+              performing arts. After studying acting in Theatre Academy and also performing there, she started her study
+              of Contemporary Dance at the Mimar Sinan Fine Arts University State Conservatory in Istanbul. After her
+              graduation and working for Istanbul State Opera and Ballet for years, she started creating her own
+              performances that were already showing her talent for inviting subtle irony and a sense of humour as well
+              as clarity to her work, which remains recognisable in her later works.
+            </p>
+            <p class="link"><a target="_blank" href="https://www.isilbicakci.com/">isilbicakci.com</a></p>
+          </div>
+          <div class="coach">
+            <img src="/img/coaches-umut.jpg" alt="Umut Eldem" />
+            <h3>Umut Eldem</h3>
+            <p>
+              Umut Eldem is a composer, researcher, and creative programmer. He works as the coordinator of the research
+              group CREATION at Royal Conservatoire Antwerp, where he gives courses on music theory and audiovisual
+              composition. As a Max Certified Trainer, he teaches and regularly organises workshops on creative coding
+              for musicians. His compositions and research focus on the exploration of synaesthesia as an artistic
+              medium. He has given lectures on his research of synaesthesia, and had his audiovisual works and
+              installations combining sound and colours presented in many countries around the world.
+            </p>
+            <p class="link"><a target="_blank" href="https://umuteldem.com/">umuteldem.com</a></p>
+          </div>
+          <div class="coach">
+            <img src="/img/coaches-frederik.jpeg" alt="Frederik De Bleser" />
+            <h3>Frederik De Bleser</h3>
+            <p>
+              Frederik De Bleser is a researcher and lecturer at Sint Lucas Antwerp. His research focuses on the
+              connection between art and technology and the development of free software tools for artificial
+              intelligence and data visualization. He is co-founder of the Algorithmic Gaze Research Group. He
+              coordinates the master in digital media at Sint Lucas, and works as a freelance data visualisation artist,
+              creating projects for Belgian news and online democracy platforms.
+            </p>
+            <p class="link"><a target="_blank" href="https://enigmeta.com/">enigmeta.com</a></p>
+          </div>
+        </div>
+      </section>
 
-        <section class="section-location">
-            <h2>Location</h2>
-            <div class="side-by-side">
-                <img src="/img/desingel.jpg" alt="Royal Conservatory of Antwerp" />
-                <div class="location-info">
-                    <p>
-                        The Royal Conservatory of Antwerp is located near the vibrant Zuid district and serves as a hub
-                        for musical and performative talent. The Conservatory shares a campus with deSingel, an
-                        acclaimed arts centre known for its eclectic mix of music, dance, and theatre performances.
-                        Together, they form a cultural beacon within the city. The neighbourhood around the Conservatory
-                        is lively and artistic, dotted with galleries, cafés, and boutiques, reflecting the creative
-                        spirit of the institution.
-                    </p>
-                    <address>
-                        Royal Conservatory of Antwerp<br />
-                        Desguinlei 25<br />
-                        2018 Antwerp<br />
-                        Belgium
-                    </address>
-                </div>
-            </div>
-        </section>
+      <section class="section-location">
+        <h2>Location</h2>
+        <div class="side-by-side">
+          <img src="/img/desingel.jpg" alt="Royal Conservatory of Antwerp" />
+          <div class="location-info">
+            <p>
+              The Royal Conservatory of Antwerp is located near the vibrant Zuid district and serves as a hub for
+              musical and performative talent. The Conservatory shares a campus with deSingel, an acclaimed arts centre
+              known for its eclectic mix of music, dance, and theatre performances. Together, they form a cultural
+              beacon within the city. The neighbourhood around the Conservatory is lively and artistic, dotted with
+              galleries, cafés, and boutiques, reflecting the creative spirit of the institution.
+            </p>
+            <address>
+              Royal Conservatory of Antwerp<br />
+              Desguinlei 25<br />
+              2018 Antwerp<br />
+              Belgium
+            </address>
+          </div>
+        </div>
+      </section>
 
-        <section class="section-sign-up">
-            <div class="container">
-                <h2>Planning</h2>
-                <div class="planning">
-                    <strong class="day">7th of June:</strong> registration deadline<br />
-                    <strong class="day">11th of June:</strong> first online meeting with all participants and
-                    coaches<br /><br />
-                    <strong class="day">Mon Sep 2: </strong>welcome, workshop, group project work, dinner<br />
-                    <strong class="day">Tue Sep 3: </strong>workshop, group project work, sharing session<br />
-                    <strong class="day">Wed Sep 4: </strong>morning warm-up, group project work, workshop,
-                    performance<br />
-                    <strong class="day">Thu Sep 5: </strong>morning warm-up, group project work, group project
-                    try-out<br />
-                    <strong class="day">Fri Sep 6: </strong>morning warm-up, setting up, group project work, final
-                    presentation, dinner and afterparty<br />
-                    <strong class="day">Sat Sep 7: </strong>feedback session
-                </div>
-                <p>
-                    The total price of the summer school is € 300,00.<br />Accommodation and travel costs are not
-                    covered by the organisation, but depending on the circumstances, your institute might cover the
-                    fee and the related costs through scholarships. We have 4 full scholarships for students from
-                    Sint Lucas Antwerpen.
-                </p>
-                <p>Ready to RAIVE? Registrations are open! We're accepting 12 people. Sign up here:</p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdorxQf4OVFC0OJIoUE786OeNkWOsr9mAE9VTsES5Ta2HWeJg/viewform"
-                    class="cta">Sign Up</a>
-            </div>
-        </section>
+      <section class="section-sign-up">
+        <div class="container">
+          <h2>Planning</h2>
+          <div class="planning">
+            <strong class="day">7th of June:</strong> registration deadline<br />
+            <strong class="day">11th of June:</strong> first online meeting with all participants and coaches<br /><br />
+            <strong class="day">Mon Sep 2: </strong>welcome, workshop, group project work, dinner<br />
+            <strong class="day">Tue Sep 3: </strong>workshop, group project work, sharing session<br />
+            <strong class="day">Wed Sep 4: </strong>morning warm-up, group project work, workshop, performance<br />
+            <strong class="day">Thu Sep 5: </strong>morning warm-up, group project work, group project try-out<br />
+            <strong class="day">Fri Sep 6: </strong>morning warm-up, setting up, group project work, final presentation,
+            dinner and afterparty<br />
+            <strong class="day">Sat Sep 7: </strong>feedback session
+          </div>
+          <p>
+            The total price of the summer school is € 300,00.<br />Accommodation and travel costs are not covered by the
+            organisation, but depending on the circumstances, your institute might cover the fee and the related costs
+            through scholarships. We have 4 full scholarships for students from Sint Lucas Antwerpen.
+          </p>
+          <p>Ready to RAIVE? Registrations are open! We're accepting 12 people. Sign up here:</p>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdorxQf4OVFC0OJIoUE786OeNkWOsr9mAE9VTsES5Ta2HWeJg/viewform"
+            class="cta"
+            >Sign Up</a
+          >
+        </div>
+      </section>
 
-        <section class="section-footer">
-            <div class="container">
-                <p>
-                    RAIVE is organised by
-                    <a href="https://algorithmicgaze.com/" target="_blank">The Algorithmic Gaze</a> and
-                    <a href="https://ap-arts.be/onderzoeksgroep/creatie" target="_blank">CREATIE</a>, two research
-                    groups situated in Antwerp that combine technology and arts.
-                </p>
-                <p>
-                    Contact the organisers:<br />
-                    <a href="mailto:myrthe.bokelmann@kdg.be">Myrthe Bokelmann</a><br />
-                    <a href="mailto:celia.tortpujol@kdg.be">Cèlia Tort Pujol</a><br />
-                </p>
-                <p class="small">This website features photos from the <a href="https://www.champdactionlabo.be/2021"
-                        target="_blank">LAbO summer
-                        school</a>, organized by <a href="https://www.champdaction.be/en/"
-                        target="_blank">ChampdAction</a>. Many
-                    members of our current team are proud alumni of LAbO, which served as a profound inspiration in
-                    shaping the RAIVE programme. And while LAbO is no more, we owe immense gratitude to the organizers,
-                    which was the catalyst for sparking new ideas and collaborations. We aim to instil the same level of
-                    enthusiasm in
-                    you as well. ❤️
-                </p>
-            </div>
-        </section>
+      <section class="section-footer">
+        <div class="container">
+          <p>
+            RAIVE is organised by
+            <a href="https://algorithmicgaze.com/" target="_blank">The Algorithmic Gaze</a> and
+            <a href="https://ap-arts.be/onderzoeksgroep/creatie" target="_blank">CREATIE</a>, two research groups
+            situated in Antwerp that combine technology and arts.
+          </p>
+          <p>
+            Contact the organisers:<br />
+            <a href="mailto:myrthe.bokelmann@kdg.be">Myrthe Bokelmann</a><br />
+            <a href="mailto:celia.tortpujol@kdg.be">Cèlia Tort Pujol</a><br />
+          </p>
+          <p class="small">
+            This website features photos from the
+            <a href="https://www.champdactionlabo.be/2021" target="_blank">LAbO summer school</a>, organized by
+            <a href="https://www.champdaction.be/en/" target="_blank">ChampdAction</a>. Many members of our current team
+            are proud alumni of LAbO, which served as a profound inspiration in shaping the RAIVE programme. And while
+            LAbO is no more, we owe immense gratitude to the organizers, which was the catalyst for sparking new ideas
+            and collaborations. We aim to instil the same level of enthusiasm in you as well. ❤️
+          </p>
+        </div>
+      </section>
     </main>
 
     <script id="vs" type="x-shader/x-vertex">
-            attribute vec4 position;
-            void main() {
-              gl_Position = position;
-            }
-        </script>
+      attribute vec4 position;
+      void main() {
+        gl_Position = position;
+      }
+    </script>
     <script id="fs" type="x-shader/x-fragment">
-            precision lowp float;
-            uniform vec2 u_resolution;
-            uniform float u_time;
-            uniform float u_progress;
-            uniform float u_z_offset;
-            uniform vec3 u_world_color;
-            uniform sampler2D u_noise;
-            uniform vec3 u_light_dir;
+      precision lowp float;
+      uniform vec2 u_resolution;
+      uniform float u_time;
+      uniform float u_progress;
+      uniform float u_z_offset;
+      uniform vec3 u_world_color;
+      uniform sampler2D u_noise;
+      uniform vec3 u_light_dir;
 
-            vec3 n_light_dir = vec3(0.0, 0.0, 0.0);
+      vec3 n_light_dir = vec3(0.0, 0.0, 0.0);
 
-            const int MAX_STEPS = 35;
-            const float MAX_DIST = 1000.0;
-            const float EPSILON = 0.001;
+      const int MAX_STEPS = 35;
+      const float MAX_DIST = 1000.0;
+      const float EPSILON = 0.001;
 
-            float sdBoxApprox(vec3 p, vec3 b) {
-                vec3 d = abs(p) - b;
-                return max(d.x, max(d.y, d.z));
-            }
+      float sdBoxApprox(vec3 p, vec3 b) {
+          vec3 d = abs(p) - b;
+          return max(d.x, max(d.y, d.z));
+      }
 
-            float sdTerrain(vec3 p) {
-                p.xz += 0.044149;
-                float res = 1.5;
-                float height = texture2D(u_noise, p.xz / u_resolution * res * 0.5).r * 3.0 + texture2D(u_noise, p.xz / u_resolution * res * 0.2).r * 0.2;
-                return p.y - height;
-            }
+      float sdTerrain(vec3 p) {
+          p.xz += 0.044149;
+          float res = 1.5;
+          float height = texture2D(u_noise, p.xz / u_resolution * res * 0.5).r * 3.0 + texture2D(u_noise, p.xz / u_resolution * res * 0.2).r * 0.2;
+          return p.y - height;
+      }
 
-            float lerp(float a, float b, float t) {
-                return (1.0 - t) * a + t * b;
-            }
+      float lerp(float a, float b, float t) {
+          return (1.0 - t) * a + t * b;
+      }
 
-            float sdMengerSponge(vec3 p) {
-                float scale = 0.8;
-                float dist = sdBoxApprox(p, vec3(2.0, 2.2, 2.0));
+      float sdMengerSponge(vec3 p) {
+          float scale = 0.8;
+          float dist = sdBoxApprox(p, vec3(2.0, 2.2, 2.0));
 
-                for (int i = 0; i < 3; i++) {
-                    vec3 q = mod(p * scale, 2.0) - 1.0;
-                    float size = mix(0.3, 0.7, fract(sin(dot(floor(p * scale), vec3(7.0, 157.0, 113.0))) * 43758.5453));
-                    dist = max(dist, -sdBoxApprox(q, vec3(size)));
-                    scale *= 3.0;
-                }
-                return dist;
-            }
+          for (int i = 0; i < 3; i++) {
+              vec3 q = mod(p * scale, 2.0) - 1.0;
+              float size = mix(0.3, 0.7, fract(sin(dot(floor(p * scale), vec3(7.0, 157.0, 113.0))) * 43758.5453));
+              dist = max(dist, -sdBoxApprox(q, vec3(size)));
+              scale *= 3.0;
+          }
+          return dist;
+      }
 
-            float scene(vec3 p) {
-                p.z += u_z_offset;
-                float scene1 = sdTerrain(p - vec3(1.0, -1.0 + u_progress, 25.0 + u_time * 0.01));
+      float scene(vec3 p) {
+          p.z += u_z_offset;
+          float scene1 = sdTerrain(p - vec3(1.0, -1.0 + u_progress, 25.0 + u_time * 0.01));
 
-                float rep = 2.4;
-                vec3 grid = p;
-                grid.xz = mod(p.xz, rep * 2.0) - rep;
-                grid.z -= u_time * 0.01;
-                float scene2 = sdMengerSponge(grid);
+          float rep = 2.4;
+          vec3 grid = p;
+          grid.xz = mod(p.xz, rep * 2.0) - rep;
+          grid.z -= u_time * 0.01;
+          float scene2 = sdMengerSponge(grid);
 
-                return lerp(scene1, scene2, u_progress * 1.2);
-            }
+          return lerp(scene1, scene2, u_progress * 1.2);
+      }
 
-            vec3 rayMarch(vec3 ro, vec3 rd) {
-                float d = 0.0;
-                for (int i = 0; i < MAX_STEPS; i++) {
-                  vec3 p = ro + rd * d;
-                  float dS = scene(p);
-                  d += dS;
-                  if (d > MAX_DIST || abs(dS) < EPSILON) break;
-                }
-                return ro + rd * d;
-            }
+      vec3 rayMarch(vec3 ro, vec3 rd) {
+          float d = 0.0;
+          for (int i = 0; i < MAX_STEPS; i++) {
+            vec3 p = ro + rd * d;
+            float dS = scene(p);
+            d += dS;
+            if (d > MAX_DIST || abs(dS) < EPSILON) break;
+          }
+          return ro + rd * d;
+      }
 
-            vec3 estimateNormal(vec3 p) {
-                return normalize(vec3(
-                  scene(vec3(p.x + EPSILON, p.y, p.z)) - scene(vec3(p.x - EPSILON, p.y, p.z)),
-                  scene(vec3(p.x, p.y + EPSILON, p.z)) - scene(vec3(p.x, p.y - EPSILON, p.z)),
-                  scene(vec3(p.x, p.y, p.z + EPSILON)) - scene(vec3(p.x, p.y, p.z - EPSILON))
-                ));
-              }
+      vec3 estimateNormal(vec3 p) {
+          return normalize(vec3(
+            scene(vec3(p.x + EPSILON, p.y, p.z)) - scene(vec3(p.x - EPSILON, p.y, p.z)),
+            scene(vec3(p.x, p.y + EPSILON, p.z)) - scene(vec3(p.x, p.y - EPSILON, p.z)),
+            scene(vec3(p.x, p.y, p.z + EPSILON)) - scene(vec3(p.x, p.y, p.z - EPSILON))
+          ));
+        }
 
-            vec3 palette( in float t, in vec3 a, in vec3 b, in vec3 c, in vec3 d ) {
-                return a + b * cos(6.28318 * (c * t + d));
-            }
+      vec3 palette( in float t, in vec3 a, in vec3 b, in vec3 c, in vec3 d ) {
+          return a + b * cos(6.28318 * (c * t + d));
+      }
 
-            void main() {
-                n_light_dir = normalize(u_light_dir);
-                vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
-                float an = u_time * 0.4;
-                vec3 ro = vec3(0.0, 0.1, -10.0 - u_progress);
+      void main() {
+          n_light_dir = normalize(u_light_dir);
+          vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
+          float an = u_time * 0.4;
+          vec3 ro = vec3(0.0, 0.1, -10.0 - u_progress);
 
-                vec3 rd = normalize(vec3(uv, -1.0));
-                vec3 p = rayMarch(ro, rd);
-                vec3 normal = estimateNormal(p);
-                float diffuse = max(dot(normal, n_light_dir), 0.0);
-                vec3 a = u_world_color;
-                vec3 b = vec3(0.80, 0.10, 0.10);
-                vec3 c = vec3(1.00, 0.20, 0.20);
-                vec3 d = vec3(0.15, 0.00, 0.05);
-                vec3 color = palette(diffuse, a, b, c, d);
-                color = mix(vec3(0.5), color, 1.1);
-                gl_FragColor = vec4(color, 1);
-            }
-        </script>
+          vec3 rd = normalize(vec3(uv, -1.0));
+          vec3 p = rayMarch(ro, rd);
+          vec3 normal = estimateNormal(p);
+          float diffuse = max(dot(normal, n_light_dir), 0.0);
+          vec3 a = u_world_color;
+          vec3 b = vec3(0.80, 0.10, 0.10);
+          vec3 c = vec3(1.00, 0.20, 0.20);
+          vec3 d = vec3(0.15, 0.00, 0.05);
+          vec3 color = palette(diffuse, a, b, c, d);
+          color = mix(vec3(0.5), color, 1.1);
+          gl_FragColor = vec4(color, 1);
+      }
+    </script>
     <script type="module" src="main.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script>
-        const carousel = document.querySelector(".carousel");
-        const flkty = new Flickity(carousel, {
-            imagesLoaded: true,
-            wrapAround: true,
-            autoPlay: 5000,
-            pageDots: true,
-            prevNextButtons: false,
-        });
+      const carousel = document.querySelector(".carousel");
+      const flkty = new Flickity(carousel, {
+        imagesLoaded: true,
+        wrapAround: true,
+        autoPlay: 5000,
+        pageDots: true,
+        prevNextButtons: false,
+      });
     </script>
-</body>
-
+  </body>
 </html>
