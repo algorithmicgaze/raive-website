@@ -15,7 +15,7 @@ const noiseTexture = twgl.createTexture(gl, { src: "/img/noise.png", min: gl.LIN
   requestAnimationFrame(render);
   gsap.to(anims, {
     delta: 0.5,
-    world_color_r: 0.2,
+    world_color_r: 0.9,
     world_color_g: 0.1,
     world_color_b: 0.1,
     duration: 2.0,
@@ -76,7 +76,7 @@ function buildTimeline() {
 
   tl.from(anims, {
     delta: 0.5,
-    world_color_r: 0.2,
+    world_color_r: 0.9,
     world_color_g: 0.1,
     world_color_b: 0.1,
     duration: 0.2,
