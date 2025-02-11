@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RAIVE Summer School 2024</title>
+    <title>RAIVE Summer School 2025</title>
     <link rel="canonical" href="https://raive.school" />
     <link rel="preload" as="script" href="https://esm.sh/twgl.js@5.5.4" crossorigin="anonymous" />
     <link rel="preload" as="script" href="https://esm.sh/gsap@3.12.5" crossorigin="anonymous" />
@@ -150,6 +150,31 @@
       .section-about .container {
         max-width: 960px;
         margin: 0 auto;
+      }
+
+      .section-about .side-by-side {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .section-about figure {
+        margin: 0;
+      }
+
+      @media (min-width: 800px) {
+        .section-about .side-by-side {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .section-about .side-by-side > div {
+          flex: 1;
+        }
+
+        .section-about figure {
+          flex: 1;
+        }
       }
 
       .section-gallery {
@@ -355,26 +380,19 @@
     <main>
       <section class="section-hero">
         <h1>RAIVE AI Summer School</h1>
-        <h2>September 2-7, 2024</h2>
+        <h2>September 1-6, 2025</h2>
         <h3>Royal Conservatoire Antwerp</h3>
-      </section>
-
-      <section class="section-presentation">
-        <div>
-          <p>
-            On <strong>September 6, 2024</strong> we invite you to the final presentation of RAIVE!<br />This will take
-            place at 16.30 in De Gele Zaal of the Royal Conservatoire Antwerp. After one week of creating
-            collaboratively and interdisciplinary, the participants of the summer school will present the work they have
-            been developing together under the guidance of four coaches. Take your agendas and save the date! Free
-            entrance.
-          </p>
-        </div>
       </section>
 
       <section class="section-intro">
         <figure>
-          <img src="/img/labo21-alexandra.jpg" alt="Alexandra Fraser performing at LAbO 2021 — Photo by Erik Berkey" />
-          <figcaption>Alexandra Fraser performing at LAbO 2021<br />Photo by Erik Berkey</figcaption>
+          <img
+            src="/img/raive24-performance-dress.jpg"
+            alt="Performance of the 'Dress' project by Elena Khurgina, Anne Marleen Olthof and Inesa Markava"
+          />
+          <figcaption>
+            Performance of the "Dress" project by Elena Khurgina, Anne Marleen Olthof and Inesa Markava
+          </figcaption>
         </figure>
         <div>
           <p>
@@ -396,38 +414,91 @@
             the arts. These coaches are there to mentor as well as share their personal artistic journeys through
             lectures and performances, enriching the learning atmosphere.
           </p>
-          <p>
-            Introductory workshops will guide you in how to work with AI and interactive audio. These sessions aim to
-            empower you and your group to take your art into new and unexpected realms, balancing between the craft of
-            creation and the freedom of exploration.
-          </p>
+          <div class="side-by-side">
+            <div>
+              <p>
+                Introductory workshops will guide you in how to work with AI and interactive audio. These sessions aim
+                to empower you and your group to take your art into new and unexpected realms, balancing between the
+                craft of creation and the freedom of exploration.
+              </p>
+            </div>
+            <figure>
+              <img src="/img/raive24-workshop.jpg" alt="RAIVE AI workshop by Frederik De Bleser" />
+              <figcaption>RAIVE AI workshop by Frederik De Bleser</figcaption>
+            </figure>
+          </div>
         </div>
       </section>
       <section class="section-gallery">
         <div class="carousel">
           <figure>
-            <img src="/img/labo21-klaas.jpg" alt="Klaas Vos at LAbO 2021" width="1920" />
-            <figcaption>Klaas Vos at LAbO 2021 — Photo by Erik Berkey</figcaption>
+            <img
+              src="/img/raive24-performance-blob.jpg"
+              alt="Performance of the 'Blob' project by Andrés Milán Lara, Sophie Waller, Biyi Zhu and Dualtagh McDonnell-Grundy"
+              width="1920"
+            />
+            <figcaption>
+              Performance of the "Blob" project by Andrés Milán Lara, Sophie Waller, Biyi Zhu and Dualtagh
+              McDonnell-Grundy
+            </figcaption>
           </figure>
           <figure>
-            <img src="/img/labo21-nika.jpg" alt="Cyber Sensuality project, LAbO 2021" width="1920" />
-            <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
+            <img
+              src="/img/raive24-biyi-giusy.jpg"
+              alt="Giusy Caruso explaining to Biyi Zhu how to use the biosensing bracelets"
+              width="1920"
+            />
+            <figcaption>Giusy Caruso explaining to Biyi Zhu how to use the biosensing bracelets</figcaption>
           </figure>
           <figure>
-            <img src="/img/labo21-martina-scan.jpg" alt="Martina Menegon, LAbO 2021" width="1920" />
-            <figcaption>Martina Menegon, LAbO 2021</figcaption>
+            <img src="/img/raive24-group.jpg" alt="Group picture of RAIVE '24 participants" width="1920" />
+            <figcaption>Group picture of RAIVE '24 participants</figcaption>
           </figure>
           <figure>
-            <img src="/img/labo21-myrthe-celia-leonie.jpg" alt="Mytrhe, Cèlia and Leonie at LAbO 2021" width="1920" />
-            <figcaption>Mytrhe, Cèlia and Leonie at LAbO 2021</figcaption>
+            <img src="/img/raive24-warmup.jpg" alt="RAIVE warm-up session led by Bıçakçı" width="1920" />
+            <figcaption>RAIVE warm-up session led by Bıçakçı</figcaption>
           </figure>
           <figure>
-            <img src="/img/labo21-alex-madina.jpg" alt="Cyber Sensuality project, LAbO 2021" width="1920" />
-            <figcaption>Cyber Sensuality project, LAbO 2021</figcaption>
+            <img
+              src="/img/raive24-discussion.jpg"
+              alt="Umut Eldem leading a discussion on the process of the project"
+              width="1920"
+            />
+            <figcaption>Umut Eldem leading a discussion on the process of the project</figcaption>
           </figure>
           <figure>
-            <img src="/img/labo21-outside.jpg" alt="notthecenter performing at LAbO 2021" width="1920" />
-            <figcaption>notthecenter performing at LAbO 2021 — Photo by Erik Berkey</figcaption>
+            <img
+              src="/img/raive24-blackboard.jpg"
+              alt="Biyi Zhu resting under the blackboard with notes on their project"
+              width="1920"
+            />
+            <figcaption>Biyi Zhu resting under the blackboard with notes on their project</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/img/raive24-ai-recording.jpg"
+              alt="Inesa Markava and Anne Marleen Olthof prepare AI recordings under the watchful eye of Işıl"
+              width="1920"
+            />
+            <figcaption>
+              Inesa Markava and Anne Marleen Olthof prepare AI recordings under the watchful eye of Işıl
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="/img/raive24-group-meeting.jpg" alt="Feedback meeting" width="1920" />
+            <figcaption>Feedback meeting</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/img/raive24-umut.jpg"
+              alt="Umut Eldem discussing the project with Andrés Milán Lara and Sophie Waller"
+              width="1920"
+            />
+            <figcaption>Umut Eldem discussing the project with Andrés Milán Lara and Sophie Waller</figcaption>
+          </figure>
+          <figure>
+            <img src="/img/raive24-drinks.jpg" alt="After-summerschool drinks with the team" width="1920" />
+            <figcaption>After-summerschool drinks with the team</figcaption>
           </figure>
         </div>
       </section>

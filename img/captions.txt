@@ -1,0 +1,13 @@
+filename,caption
+raive23-ai-recording.jpg,Inesa Markava and Anne Marleen Olthof prepare AI recordings under the watchful eye of Işıl
+raive24-biyi-giusy.jpg,Giusy Caruso explaining to Biyi Zhu how to use the biosensing bracelets
+raive24-blackboard.jpg,Biyi Zhu resting under the blackboard with notes on their project
+raive24-discussion.jpg,Umut Eldem leading a discussion on the process of the project
+raive24-drinks.jpg,After-summerschool drinks with the team
+raive24-group-meeting.jpg,Feedback meeting
+raive24-group.jpg,Group picture of RAIVE '24 participants
+raive24-performance-blob.jpg,Performance of the "Blob" project by Andrés Milán Lara, Sophie Waller, Biyi Zhu and Dualtagh McDonnell-Grundy
+raive24-performance-dress.jpg,Performance of the "Dress" project by Elena Khurgina, Anne Marleen Olthof and Inesa Markava
+raive24-umut.jpg,Umut Eldem discussing the project with Andrés Milán Lara and Sophie Waller
+raive24-warmup.jpg,RAIVE warm-up session led by Bıçakçı
+raive24-workshop.jpg,RAIVE AI workshop by Frederik De Bleser
