@@ -405,6 +405,31 @@
       .section-footer a {
         color: inherit;
       }
+
+      .section-trailer {
+        margin: 50vh 0;
+        padding: 5vh 1rem;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+
+      .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+      }
+
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
     </style>
   </head>
 
@@ -435,6 +460,18 @@
             much like creative writing is to literature, focusing on demystifying digital tools and hacking the
             conventions of traditional art-making.
           </p>
+        </div>
+      </section>
+
+      <section class="section-trailer">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/FyfzJ9kx1nU"
+            title="RAIVE Summer School Trailer"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
       </section>
 
