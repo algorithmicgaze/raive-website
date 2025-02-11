@@ -193,6 +193,26 @@
         margin: 0;
       }
 
+      .carousel {
+        max-height: calc(100vh - 40px);
+      }
+
+      .carousel figure {
+        height: calc(100vh - 40px);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .carousel figure img {
+        height: calc(100% - 40px);
+        object-fit: contain;
+      }
+
+      .carousel figure figcaption {
+        text-align: center;
+        padding: 10px;
+      }
+
       .section-coaches h2 {
         margin: 0 0 1rem 0;
         font-size: 2rem;
