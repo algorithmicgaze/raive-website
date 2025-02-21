@@ -93,6 +93,41 @@
         flex-direction: column;
         justify-content: flex-end;
         max-width: 800px;
+        position: relative;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: -4.5vh;
+        left: 50vw;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+
+      .scroll-indicator.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .scroll-indicator span {
+        font-size: 0.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .scroll-indicator svg {
+        animation: bounce 5s infinite;
+        width: 24px;
+        height: 24px;
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.8);
+        stroke-width: 2;
       }
 
       .section-hero h1 {
@@ -430,6 +465,22 @@
         height: 100%;
         border: 0;
       }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
     </style>
   </head>
 
@@ -440,6 +491,12 @@
         <h1>RAIVE AI Summer School</h1>
         <h2>September 1-6, 2025</h2>
         <h3>Royal Conservatoire Antwerp</h3>
+        <div class="scroll-indicator" role="complementary" aria-label="Scroll down indicator">
+          <span>Scroll down</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 5v14M5 12l7 7 7-7" />
+          </svg>
+        </div>
       </section>
 
       <section class="section-intro">
@@ -827,6 +884,26 @@
         autoPlay: 5000,
         pageDots: true,
         prevNextButtons: true,
+      });
+
+      const scrollIndicator = document.querySelector(".scroll-indicator");
+      let scrollTimeout;
+
+      function handleScroll() {
+        if (window.scrollY > 100) {
+          scrollIndicator.classList.add("hidden");
+        } else {
+          scrollIndicator.classList.remove("hidden");
+        }
+      }
+
+      window.addEventListener("scroll", () => {
+        if (!scrollTimeout) {
+          scrollTimeout = setTimeout(() => {
+            handleScroll();
+            scrollTimeout = null;
+          }, 100);
+        }
       });
     </script>
   </body>
