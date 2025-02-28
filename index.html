@@ -398,10 +398,36 @@
         background-color: #1b0000;
       }
 
-      .section-sign-up .day {
+      .planning {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        align-items: flex-start;
+      }
+
+      .plan-row {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .plan-row {
+          flex-direction: column;
+          gap: 0.25rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .plan-row .day {
         display: inline-block;
-        width: 12ch;
+        width: 15ch;
         text-align: left;
+      }
+
+      .planning .spacer {
+        height: 1rem;
       }
 
       .section-about {
@@ -709,17 +735,19 @@
       <section class="section-sign-up">
         <div class="container">
           <h2>Planning RAIVE 2025</h2>
-          <div class="planning">
-            <strong class="day">April 22:</strong> registration deadline<br />
-            <strong class="day">Mid May:</strong> first online meeting with all participants and coaches<br /><br />
-            <strong class="day">Mon Sep 1: </strong>welcome, workshop, group project work, dinner<br />
-            <strong class="day">Tue Sep 2: </strong>workshop, group project work, sharing session<br />
-            <strong class="day">Wed Sep 3: </strong>morning warm-up, group project work, workshop, performance<br />
-            <strong class="day">Thu Sep 4: </strong>morning warm-up, group project work, sharing session/performance<br />
-            <strong class="day">Fri Sep 5: </strong>morning warm-up, group project work, group project try-out<br />
-            <strong class="day">Sat Sep 6: </strong>morning warm-up, setting up, group project work, final presentation,
-            dinner and afterparty<br />
-            <strong class="day">Sun Sep 7: </strong>feedback session
+            <div class="planning">
+              <div class="plan-row"><strong class="day">Tue April 22</strong><span>registration deadline</span></div>
+              <div class="plan-row"><strong class="day">Mon May 19,<br>Tue May 20<br>or Wed May 21</strong><span>first online meeting with all participants and coaches. Date to be decided.</span></div>
+              <div class="spacer"></div>
+              <div class="plan-row"><strong class="day">Mon Sep 1</strong><span>welcome, workshop, group project work, dinner</span></div>
+              <div class="plan-row"><strong class="day">Tue Sep 2</strong><span>workshop, group project work, sharing session</span></div>
+              <div class="plan-row"><strong class="day">Wed Sep 3</strong><span>morning warm-up, group project work, workshop, performance</span></div>
+              <div class="plan-row"><strong class="day">Thu Sep 4</strong><span>morning warm-up, group project work, sharing session/performance</span></div>
+              <div class="plan-row"><strong class="day">Fri Sep 5</strong><span>morning warm-up, group project work, group project try-out</span></div>
+              <div class="plan-row"><strong class="day">Sat Sep 6</strong><span>morning warm-up, setting up, group project work, final presentation, dinner and afterparty</span></div>
+              <div class="plan-row"><strong class="day">Sun Sep 7</strong><span>feedback session</span></div>
+            </div>
+            
           </div>
           <p>
             The total price of the summer school is € 300.00.<br />
