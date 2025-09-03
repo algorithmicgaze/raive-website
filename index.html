@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -92,8 +92,11 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        max-width: 800px;
         position: relative;
+      }
+
+      .section-hero-inner {
+        max-width: 800px;
       }
 
       .scroll-indicator {
@@ -150,6 +153,23 @@
         display: flex;
         flex-direction: column;
         background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .overlay-presentation {
+        padding: 5vh 1rem;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.5);
+        font-size: 1rem;
+        border-radius: 8px;
+      }
+
+      @media (min-width: 800px) {
+        .overlay-presentation {
+          position: absolute;
+          top: 5vh;
+          right: 5vh;
+          width: 400px;
+        }
       }
 
       .section-intro {
@@ -626,9 +646,15 @@
     <canvas id="c"></canvas>
     <main>
       <section class="section-hero">
-        <h1>RAIVE AI Summer School</h1>
-        <h2>September 1-7, 2025</h2>
-        <h3>Royal Conservatoire Antwerp</h3>
+        <div class="section-hero-inner">
+          <h1>RAIVE AI Summer School</h1>
+          <h2>September 1-7, 2025</h2>
+          <h3>Royal Conservatoire Antwerp</h3>
+        </div>
+        <p class="overlay-presentation">
+          On <strong>Saturday September 6, 2025</strong> we invite you to the final presentation of RAIVE!<br />
+          At 16.30 in De Gele Zaal of the Royal Conservatoire Antwerp. Free entrance.
+        </p>
         <div class="scroll-indicator" role="complementary" aria-label="Scroll down indicator">
           <span>Scroll down</span>
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -915,7 +941,7 @@
                 <input type="email" name="EMAIL" id="mce-EMAIL" class="form-input" placeholder="your@email.com" required />
               </div>
               <div style="position: absolute; left: -5000px" aria-hidden="true">
-                <input type="text" name="b_f2f4dfed688882b52d74c63fb_811d41b0b2" tabindex="-1" value=""/>
+                <input type="text" name="b_f2f4dfed688882b52d74c63fb_811d41b0b2" tabindex="-1" value="" />
               </div>
               <div class="form-submit">
                 <button type="submit" class="cta">Subscribe</button>
