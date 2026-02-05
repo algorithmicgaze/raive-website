@@ -954,9 +954,6 @@
       float getFbm(vec2 p) {
           vec2 uv = p * 0.01;
           float noise = texture2D(u_noise, uv).r * 1.9;
-          // noise += texture2D(u_noise, uv * 2.0).r * 0.25;
-          // noise += texture2D(u_noise, uv * 4.0).r * 0.125;
-          // noise += texture2D(u_noise, uv * 8.0).r * 0.0625;
           return noise;
       }
 
@@ -964,11 +961,11 @@
           float height = getFbm(p.xz + vec2(u_time * 0.1, 0.0)) * 2.0;
           float ground = p.y - height;
 
-          // Add some floating islands
+          // Floating island - offset position and larger
           vec3 q = p;
           q.y += sin(q.x * 0.2 + u_time) * 0.2;
           q.x += sin(q.z * 0.2) * 0.2;
-          float islands = length(q - vec3(0.0, 4.0, 0.0)) - 2.0;
+          float islands = length(q - vec3(-1.5, 5.0, 3.0)) - 2.8;
           islands += getFbm(q.xz * 2.0) * 0.5;
 
           return smin(ground, islands, 2.0);
@@ -1010,11 +1007,6 @@
           vec3 ro = vec3(sin(u_time * 0.1) * 2.0, camHeight, -6.0 - u_progress * 2.0);
           vec3 rd = normalize(vec3(uv, 1.0));
 
-          // Rotate camera
-          float angle = u_time * 0.1;
-          mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
-          // rd.xz *= rot;
-
           vec3 p = rayMarch(ro, rd);
           vec3 normal = estimateNormal(p);
           float diffuse = max(dot(normal, n_light_dir), 0.0);
@@ -1023,15 +1015,15 @@
           float dist = length(p - ro);
           float fogAmount = fog(dist);
 
-          // Color
-          vec3 a = u_world_color;
-          vec3 b = vec3(0.9, 0.5, 0.7);
-          vec3 c = vec3(1.0, 1.0, 1.0);
-          vec3 d = vec3(0.9, 0.2, 0.2);
+          // Desaturated red/magenta palette
+          vec3 a = u_world_color * 0.6 + vec3(0.25, 0.15, 0.2);
+          vec3 b = vec3(0.3, 0.1, 0.25);  // Muted red/magenta
+          vec3 c = vec3(0.9, 0.7, 0.8);
+          vec3 d = vec3(0.0, 0.15, 0.3);  // Red-shifted offset
           vec3 color = palette(diffuse, a, b, c, d);
 
-          // Add some atmosphere
-          vec3 skyColor = vec3(0.5, 0.7, 1.0) * (1.0 - u_progress);
+          // Muted blue-gray sky
+          vec3 skyColor = vec3(0.22, 0.28, 0.38) * (1.0 - u_progress);
           color = mix(skyColor, color, fogAmount);
 
           gl_FragColor = vec4(color, 1.0);
