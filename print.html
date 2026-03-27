@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAIVE Shader — Print Export</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a1a; color: #eee; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; display: flex; height: 100vh; overflow: hidden; }
+
+  #controls {
+    width: 320px; min-width: 320px; padding: 16px; overflow-y: auto;
+    background: #111; border-right: 1px solid #333;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  #controls h1 { font-size: 16px; margin-bottom: 4px; }
+  #controls h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-top: 8px; }
+
+  .slider-row { display: flex; flex-direction: column; gap: 2px; }
+  .slider-row label { display: flex; justify-content: space-between; font-size: 11px; color: #aaa; }
+  .slider-row input[type="range"] { width: 100%; accent-color: #c44; }
+
+  .color-row { display: flex; align-items: center; gap: 8px; }
+  .color-row input[type="color"] { width: 40px; height: 28px; border: 1px solid #444; background: none; cursor: pointer; }
+
+  .btn {
+    padding: 10px 16px; border: 1px solid #555; background: #222; color: #eee;
+    cursor: pointer; font-family: inherit; font-size: 13px; text-align: center;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: #333; }
+  .btn.primary { background: #922; border-color: #c44; }
+  .btn.primary:hover { background: #b33; }
+
+  .btn-row { display: flex; gap: 8px; }
+  .btn-row .btn { flex: 1; }
+
+  #preview-wrap {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    padding: 24px; background: #0a0a0a; overflow: hidden;
+  }
+  #preview-wrap canvas {
+    max-width: 100%; max-height: 100%; object-fit: contain;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  }
+
+  #status { font-size: 11px; color: #666; text-align: center; }
+
+  .preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+</style>
+</head>
+<body>
+
+<div id="controls">
+  <h1>RAIVE Shader Print</h1>
+  <div id="status">Preview — not rendering</div>
+
+  <h2>Presets</h2>
+  <div class="preset-grid">
+    <button class="btn" onclick="applyPreset('red')">Red Terrain</button>
+    <button class="btn" onclick="applyPreset('dark')">Dark Magenta</button>
+    <button class="btn" onclick="applyPreset('grey')">Grey Mist</button>
+    <button class="btn" onclick="applyPreset('blue')">Blue Dusk</button>
+  </div>
+
+  <h2>Time</h2>
+  <div class="btn-row">
+    <button class="btn" id="playPauseBtn" onclick="togglePlay()">⏸ Pause</button>
+    <button class="btn" onclick="params.time=0; updateSliders()">Reset</button>
+  </div>
+  <div class="slider-row">
+    <label>Time <span id="v_time"></span></label>
+    <input type="range" id="s_time" min="0" max="120" step="0.1" oninput="params.time=+this.value; paused=true; updatePlayBtn()">
+  </div>
+
+  <h2>Camera</h2>
+  <div class="slider-row">
+    <label>Progress (delta) <span id="v_progress"></span></label>
+    <input type="range" id="s_progress" min="-2" max="2" step="0.01" oninput="params.progress=+this.value">
+  </div>
+  <div class="slider-row">
+    <label>Z Offset <span id="v_z_offset"></span></label>
+    <input type="range" id="s_z_offset" min="-20" max="20" step="0.1" oninput="params.z_offset=+this.value">
+  </div>
+
+  <h2>World Color</h2>
+  <div class="color-row">
+    <input type="color" id="worldColorPicker" oninput="colorPickerToParams(this.value)">
+    <span id="v_world_color"></span>
+  </div>
+  <div class="slider-row">
+    <label>R <span id="v_wcr"></span></label>
+    <input type="range" id="s_wcr" min="0" max="1" step="0.01" oninput="params.world_color[0]=+this.value; updateColorPicker()">
+  </div>
+  <div class="slider-row">
+    <label>G <span id="v_wcg"></span></label>
+    <input type="range" id="s_wcg" min="0" max="1" step="0.01" oninput="params.world_color[1]=+this.value; updateColorPicker()">
+  </div>
+  <div class="slider-row">
+    <label>B <span id="v_wcb"></span></label>
+    <input type="range" id="s_wcb" min="0" max="1" step="0.01" oninput="params.world_color[2]=+this.value; updateColorPicker()">
+  </div>
+
+  <h2>Light Direction</h2>
+  <div class="slider-row">
+    <label>X <span id="v_lx"></span></label>
+    <input type="range" id="s_lx" min="-1" max="1" step="0.01" oninput="params.light_dir[0]=+this.value">
+  </div>
+  <div class="slider-row">
+    <label>Y <span id="v_ly"></span></label>
+    <input type="range" id="s_ly" min="-1" max="1" step="0.01" oninput="params.light_dir[1]=+this.value">
+  </div>
+  <div class="slider-row">
+    <label>Z <span id="v_lz"></span></label>
+    <input type="range" id="s_lz" min="-1" max="1" step="0.01" oninput="params.light_dir[2]=+this.value">
+  </div>
+
+  <h2>Export</h2>
+  <div class="slider-row">
+    <label>DPI <span id="v_dpi"></span></label>
+    <input type="range" id="s_dpi" min="72" max="300" step="1" value="150" oninput="exportDPI=+this.value">
+  </div>
+  <div id="export-info" style="font-size:11px; color:#888;"></div>
+  <button class="btn primary" onclick="exportPNG()">Export A3 PNG</button>
+</div>
+
+<div id="preview-wrap">
+  <canvas id="c"></canvas>
+</div>
+
+<script id="vs" type="x-shader/x-vertex">
+  attribute vec4 position;
+  void main() {
+    gl_Position = position;
+  }
+</script>
+
+<script id="fs" type="x-shader/x-fragment">
+  precision highp float;
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_progress;
+  uniform float u_z_offset;
+  uniform vec3 u_world_color;
+  uniform sampler2D u_noise;
+  uniform vec3 u_light_dir;
+
+  vec3 n_light_dir = vec3(0.0, 1.0, 1.0);
+
+  const int MAX_STEPS = 100;
+  const float MAX_DIST = 500.0;
+  const float EPSILON = 0.001;
+
+  float smin(float a, float b, float k) {
+      float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
+      return mix(b, a, h) - k * h * (1.0 - h);
+  }
+
+  float getFbm(vec2 p) {
+      vec2 uv = p * 0.01;
+      float noise = texture2D(u_noise, uv).r * 1.9;
+      return noise;
+  }
+
+  float sdTerrain(vec3 p) {
+      float height = getFbm(p.xz + vec2(u_time * 0.1, 0.0)) * 2.0;
+      float ground = p.y - height;
+
+      vec3 q = p;
+      q.y += sin(q.x * 0.2 + u_time) * 0.2;
+      q.x += sin(q.z * 0.2) * 0.2;
+      float islands = length(q - vec3(-1.5, 5.0, 3.0)) - 2.8;
+      islands += getFbm(q.xz * 2.0) * 0.5;
+
+      return smin(ground, islands, 2.0);
+  }
+
+  vec3 rayMarch(vec3 ro, vec3 rd) {
+      float d = 0.0;
+      for (int i = 0; i < MAX_STEPS; i++) {
+          vec3 p = ro + rd * d;
+          float dS = sdTerrain(p);
+          d += dS;
+          if (d > MAX_DIST || abs(dS) < EPSILON) break;
+      }
+      return ro + rd * d;
+  }
+
+  vec3 estimateNormal(vec3 p) {
+      return normalize(vec3(
+          sdTerrain(vec3(p.x + EPSILON, p.y, p.z)) - sdTerrain(vec3(p.x - EPSILON, p.y, p.z)),
+          sdTerrain(vec3(p.x, p.y + EPSILON, p.z)) - sdTerrain(vec3(p.x, p.y - EPSILON, p.z)),
+          sdTerrain(vec3(p.x, p.y, p.z + EPSILON)) - sdTerrain(vec3(p.x, p.y, p.z - EPSILON))
+      ));
+  }
+
+  vec3 palette(float t, vec3 a, vec3 b, vec3 c, vec3 d) {
+      return a + b * cos(6.28318 * (c * t + d));
+  }
+
+  float fog(float d) {
+      return 1.0 / (1.0 + d * d * 0.001);
+  }
+
+  void main() {
+      n_light_dir = normalize(u_light_dir);
+      vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
+
+      float camHeight = 3.0 + sin(u_time * 0.2) * 0.5;
+      vec3 ro = vec3(sin(u_time * 0.1) * 2.0, camHeight, -6.0 - u_progress * 2.0);
+      vec3 rd = normalize(vec3(uv, 1.0));
+
+      vec3 p = rayMarch(ro, rd);
+      vec3 normal = estimateNormal(p);
+      float diffuse = max(dot(normal, n_light_dir), 0.0);
+
+      float dist = length(p - ro);
+      float fogAmount = fog(dist);
+
+      vec3 a = u_world_color * 0.6 + vec3(0.25, 0.15, 0.2);
+      vec3 b = vec3(0.3, 0.1, 0.25);
+      vec3 c = vec3(0.9, 0.7, 0.8);
+      vec3 d = vec3(0.0, 0.15, 0.3);
+      vec3 color = palette(diffuse, a, b, c, d);
+
+      vec3 skyColor = vec3(0.22, 0.28, 0.38) * (1.0 - u_progress);
+      color = mix(skyColor, color, fogAmount);
+
+      gl_FragColor = vec4(color, 1.0);
+  }
+</script>
+
+<script type="module">
+import * as twgl from "https://esm.sh/twgl.js@5.5.4";
+
+// A3 portrait: 297mm x 420mm
+const A3_W_MM = 297, A3_H_MM = 420;
+const MM_TO_IN = 1 / 25.4;
+
+const canvas = document.getElementById("c");
+const gl = canvas.getContext("webgl", { preserveDrawingBuffer: true, antialias: false });
+const programInfo = twgl.createProgramInfo(gl, ["vs", "fs"]);
+const arrays = { position: [-1,-1,0, 1,-1,0, -1,1,0, -1,1,0, 1,-1,0, 1,1,0] };
+const bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays);
+
+const noiseTexture = twgl.createTexture(gl, {
+  src: "/img/noise.png", min: gl.LINEAR, mag: gl.LINEAR, wrap: gl.REPEAT,
+}, () => { requestAnimationFrame(render); });
+
+// State
+window.params = {
+  time: 0,
+  progress: 0.5,
+  z_offset: 0,
+  world_color: [0.9, 0.1, 0.1],
+  light_dir: [0.1, 0.1, 0.1],
+};
+window.exportDPI = 150;
+window.paused = false;
+let lastFrameTime = null;
+
+// Preview: A3 portrait aspect ratio
+const A3_ASPECT = A3_W_MM / A3_H_MM; // ~0.707
+
+function resizePreview() {
+  const wrap = document.getElementById("preview-wrap");
+  const maxW = wrap.clientWidth - 48;
+  const maxH = wrap.clientHeight - 48;
+  let w, h;
+  if (maxW / maxH > A3_ASPECT) {
+    h = maxH; w = h * A3_ASPECT;
+  } else {
+    w = maxW; h = w / A3_ASPECT;
+  }
+  canvas.width = Math.round(w * devicePixelRatio);
+  canvas.height = Math.round(h * devicePixelRatio);
+  canvas.style.width = Math.round(w) + "px";
+  canvas.style.height = Math.round(h) + "px";
+}
+resizePreview();
+window.addEventListener("resize", resizePreview);
+
+function renderFrame(targetGL, targetProgramInfo, targetBufferInfo, targetNoiseTexture, width, height) {
+  targetGL.viewport(0, 0, width, height);
+  const uniforms = {
+    u_resolution: [width, height],
+    u_time: params.time,
+    u_progress: params.progress,
+    u_z_offset: params.z_offset,
+    u_world_color: params.world_color,
+    u_noise: targetNoiseTexture,
+    u_light_dir: params.light_dir,
+  };
+  targetGL.useProgram(targetProgramInfo.program);
+  twgl.setBuffersAndAttributes(targetGL, targetProgramInfo, targetBufferInfo);
+  twgl.setUniforms(targetProgramInfo, uniforms);
+  twgl.drawBufferInfo(targetGL, targetBufferInfo, targetGL.TRIANGLES);
+}
+
+function render(now) {
+  if (!paused) {
+    if (lastFrameTime === null) lastFrameTime = now;
+    params.time += (now - lastFrameTime) / 1000;
+  }
+  lastFrameTime = now;
+
+  resizePreview();
+  renderFrame(gl, programInfo, bufferInfo, noiseTexture, canvas.width, canvas.height);
+  updateSliderValues();
+  updateExportInfo();
+  requestAnimationFrame(render);
+}
+
+// Slider sync
+window.updateSliders = function() {
+  document.getElementById("s_time").value = params.time;
+  document.getElementById("s_progress").value = params.progress;
+  document.getElementById("s_z_offset").value = params.z_offset;
+  document.getElementById("s_wcr").value = params.world_color[0];
+  document.getElementById("s_wcg").value = params.world_color[1];
+  document.getElementById("s_wcb").value = params.world_color[2];
+  document.getElementById("s_lx").value = params.light_dir[0];
+  document.getElementById("s_ly").value = params.light_dir[1];
+  document.getElementById("s_lz").value = params.light_dir[2];
+  updateColorPicker();
+};
+
+function updateSliderValues() {
+  document.getElementById("s_time").value = params.time;
+  document.getElementById("v_time").textContent = params.time.toFixed(1) + "s";
+  document.getElementById("v_progress").textContent = params.progress.toFixed(2);
+  document.getElementById("v_z_offset").textContent = params.z_offset.toFixed(1);
+  document.getElementById("v_wcr").textContent = params.world_color[0].toFixed(2);
+  document.getElementById("v_wcg").textContent = params.world_color[1].toFixed(2);
+  document.getElementById("v_wcb").textContent = params.world_color[2].toFixed(2);
+  document.getElementById("v_lx").textContent = params.light_dir[0].toFixed(2);
+  document.getElementById("v_ly").textContent = params.light_dir[1].toFixed(2);
+  document.getElementById("v_lz").textContent = params.light_dir[2].toFixed(2);
+  document.getElementById("v_dpi").textContent = exportDPI;
+  document.getElementById("v_world_color").textContent =
+    `rgb(${Math.round(params.world_color[0]*255)}, ${Math.round(params.world_color[1]*255)}, ${Math.round(params.world_color[2]*255)})`;
+}
+
+function updateExportInfo() {
+  const w = Math.round(A3_W_MM * MM_TO_IN * exportDPI);
+  const h = Math.round(A3_H_MM * MM_TO_IN * exportDPI);
+  document.getElementById("export-info").textContent = `${w} × ${h} px`;
+}
+
+window.updateColorPicker = function() {
+  const r = Math.round(params.world_color[0] * 255);
+  const g = Math.round(params.world_color[1] * 255);
+  const b = Math.round(params.world_color[2] * 255);
+  document.getElementById("worldColorPicker").value =
+    "#" + [r,g,b].map(v => v.toString(16).padStart(2,"0")).join("");
+};
+
+window.colorPickerToParams = function(hex) {
+  params.world_color[0] = parseInt(hex.slice(1,3), 16) / 255;
+  params.world_color[1] = parseInt(hex.slice(3,5), 16) / 255;
+  params.world_color[2] = parseInt(hex.slice(5,7), 16) / 255;
+  updateSliders();
+};
+
+window.togglePlay = function() {
+  paused = !paused;
+  updatePlayBtn();
+};
+window.updatePlayBtn = function() {
+  document.getElementById("playPauseBtn").textContent = paused ? "▶ Play" : "⏸ Pause";
+  document.getElementById("status").textContent = paused ? "Paused" : "Playing";
+};
+
+// Presets
+const presets = {
+  red:  { progress: 0.5, world_color: [0.9, 0.1, 0.1], light_dir: [0.1, 0.1, 0.1] },
+  dark: { progress: 0.3, world_color: [0.5, 0.0, 0.2], light_dir: [0.0, 0.1, 0.1] },
+  grey: { progress: 0.1, world_color: [0.2, 0.2, 0.2], light_dir: [0.0, 1.0, 0.1] },
+  blue: { progress: -0.8, world_color: [0.2, 0.0, 0.1], light_dir: [0.0, 1.0, -0.1] },
+};
+window.applyPreset = function(name) {
+  const p = presets[name];
+  params.progress = p.progress;
+  params.world_color = [...p.world_color];
+  params.light_dir = [...p.light_dir];
+  updateSliders();
+};
+
+// Export
+window.exportPNG = function() {
+  const w = Math.round(A3_W_MM * MM_TO_IN * exportDPI);
+  const h = Math.round(A3_H_MM * MM_TO_IN * exportDPI);
+
+  document.getElementById("status").textContent = `Rendering ${w}×${h}...`;
+
+  // Use a timeout so the status text renders before we block
+  setTimeout(() => {
+    const offscreen = document.createElement("canvas");
+    offscreen.width = w;
+    offscreen.height = h;
+    const gl2 = offscreen.getContext("webgl", { preserveDrawingBuffer: true, antialias: false });
+    if (!gl2) { alert("Could not create offscreen WebGL context"); return; }
+
+    const progInfo2 = twgl.createProgramInfo(gl2, [
+      document.getElementById("vs").textContent,
+      document.getElementById("fs").textContent,
+    ]);
+    const bufInfo2 = twgl.createBufferInfoFromArrays(gl2, arrays);
+
+    // Load noise texture synchronously-ish via existing image
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      const tex2 = twgl.createTexture(gl2, {
+        src: img, min: gl2.LINEAR, mag: gl2.LINEAR, wrap: gl2.REPEAT,
+      });
+
+      renderFrame(gl2, progInfo2, bufInfo2, tex2, w, h);
+
+      offscreen.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `raive-shader-${w}x${h}.png`;
+        a.click();
+        URL.revokeObjectURL(url);
+        document.getElementById("status").textContent = "Exported!";
+      }, "image/png");
+    };
+    img.src = "/img/noise.png";
+  }, 50);
+};
+
+// Init sliders
+updateSliders();
+updatePlayBtn();
+</script>
+</body>
+</html>
