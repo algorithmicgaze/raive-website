@@ -332,7 +332,6 @@ figcaption {
 }
 
 .section-coaches .container {
-  min-height: 100vh;
   display: grid;
   gap: 1rem;
   padding: 1rem;
