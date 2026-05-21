@@ -1,0 +1,29 @@
+{% extends "base.njk" %}
+
+{% set bodyClass = "has-solid-header" %}
+
+{% block body %}
+  <main class="archive-page">
+    <h1>Archive</h1>
+    <p class="lede">A growing collection of works developed by participants of past RAIVE editions.</p>
+
+    <div class="archive-grid">
+      {% for project in collections.projects %}
+        {% set p = project.data %}
+        <a class="archive-card" href="{{ project.url }}">
+          {% if p.hero %}
+            <div class="thumb">
+              <img src="{{ project.url }}images/{{ p.hero }}" alt="" loading="lazy" />
+            </div>
+          {% endif %}
+          <div class="body">
+            <span class="edition-tag">{{ p.edition }}</span>
+            <h2>{{ p.title }}</h2>
+            {% if p.group %}<p class="artists">{{ p.group }} — {{ p.artists | join(", ") }}</p>
+            {% else %}<p class="artists">{{ p.artists | join(", ") }}</p>{% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,16 @@
+<header class="site-header" id="site-header">
+  <a href="/" class="wordmark">RAIVE</a>
+  <nav>
+    <a href="/archive/">Archive</a>
+    <a href="{{ site.signupUrl }}" class="cta-small" target="_blank" rel="noopener">Sign Up</a>
+  </nav>
+</header>
+<script>
+  (function () {
+    var h = document.getElementById("site-header");
+    if (!h) return;
+    function on() { h.classList.toggle("is-scrolled", window.scrollY > 50); }
+    window.addEventListener("scroll", on, { passive: true });
+    on();
+  })();
+</script>

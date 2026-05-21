@@ -1,0 +1,147 @@
+{% extends "base.njk" %}
+
+{% block head %}
+  <link rel="preload" as="script" href="https://esm.sh/twgl.js@5.5.4" crossorigin="anonymous" />
+  <link rel="preload" as="script" href="https://esm.sh/gsap@3.12.5" crossorigin="anonymous" />
+  <link rel="preload" as="script" href="https://esm.sh/gsap@3.12.5/ScrollTrigger" crossorigin="anonymous" />
+  <link rel="preload" as="image" href="/assets/img/noise.png" />
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
+{% endblock %}
+
+{% block body %}
+  <canvas id="c"></canvas>
+  {{ content | safe }}
+
+  <script id="vs" type="x-shader/x-vertex">
+    attribute vec4 position;
+    void main() {
+      gl_Position = position;
+    }
+  </script>
+  <script id="fs" type="x-shader/x-fragment">
+    precision lowp float;
+    uniform vec2 u_resolution;
+    uniform float u_time;
+    uniform float u_progress;
+    uniform float u_z_offset;
+    uniform vec3 u_world_color;
+    uniform sampler2D u_noise;
+    uniform vec3 u_light_dir;
+
+    vec3 n_light_dir = vec3(0.0, 1.0, 1.0);
+
+    const int MAX_STEPS = 100;
+    const float MAX_DIST = 500.0;
+    const float EPSILON = 0.001;
+
+    float smin(float a, float b, float k) {
+        float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
+        return mix(b, a, h) - k * h * (1.0 - h);
+    }
+
+    float getFbm(vec2 p) {
+        vec2 uv = p * 0.01;
+        float noise = texture2D(u_noise, uv).r * 1.9;
+        return noise;
+    }
+
+    float sdTerrain(vec3 p) {
+        float height = getFbm(p.xz + vec2(u_time * 0.1, 0.0)) * 2.0;
+        float ground = p.y - height;
+
+        vec3 q = p;
+        q.y += sin(q.x * 0.2 + u_time) * 0.2;
+        q.x += sin(q.z * 0.2) * 0.2;
+        float islands = length(q - vec3(-1.5, 5.0, 3.0)) - 2.8;
+        islands += getFbm(q.xz * 2.0) * 0.5;
+
+        return smin(ground, islands, 2.0);
+    }
+
+    vec3 rayMarch(vec3 ro, vec3 rd) {
+        float d = 0.0;
+        for (int i = 0; i < MAX_STEPS; i++) {
+            vec3 p = ro + rd * d;
+            float dS = sdTerrain(p);
+            d += dS;
+            if (d > MAX_DIST || abs(dS) < EPSILON) break;
+        }
+        return ro + rd * d;
+    }
+
+    vec3 estimateNormal(vec3 p) {
+        return normalize(vec3(
+            sdTerrain(vec3(p.x + EPSILON, p.y, p.z)) - sdTerrain(vec3(p.x - EPSILON, p.y, p.z)),
+            sdTerrain(vec3(p.x, p.y + EPSILON, p.z)) - sdTerrain(vec3(p.x, p.y - EPSILON, p.z)),
+            sdTerrain(vec3(p.x, p.y, p.z + EPSILON)) - sdTerrain(vec3(p.x, p.y, p.z - EPSILON))
+        ));
+    }
+
+    vec3 palette(float t, vec3 a, vec3 b, vec3 c, vec3 d) {
+        return a + b * cos(6.28318 * (c * t + d));
+    }
+
+    float fog(float d) {
+        return 1.0 / (1.0 + d * d * 0.001);
+    }
+
+    void main() {
+        n_light_dir = normalize(u_light_dir);
+        vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
+
+        float camHeight = 3.0 + sin(u_time * 0.2) * 0.5;
+        vec3 ro = vec3(sin(u_time * 0.1) * 2.0, camHeight, -6.0 - u_progress * 2.0);
+        vec3 rd = normalize(vec3(uv, 1.0));
+
+        vec3 p = rayMarch(ro, rd);
+        vec3 normal = estimateNormal(p);
+        float diffuse = max(dot(normal, n_light_dir), 0.0);
+
+        float dist = length(p - ro);
+        float fogAmount = fog(dist);
+
+        vec3 a = u_world_color * 0.6 + vec3(0.25, 0.15, 0.2);
+        vec3 b = vec3(0.3, 0.1, 0.25);
+        vec3 c = vec3(0.9, 0.7, 0.8);
+        vec3 d = vec3(0.0, 0.15, 0.3);
+        vec3 color = palette(diffuse, a, b, c, d);
+
+        vec3 skyColor = vec3(0.22, 0.28, 0.38) * (1.0 - u_progress);
+        color = mix(skyColor, color, fogAmount);
+
+        gl_FragColor = vec4(color, 1.0);
+    }
+  </script>
+  <script type="module" src="/assets/js/home.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script>
+    const carousel = document.querySelector(".carousel");
+    const flkty = new Flickity(carousel, {
+      imagesLoaded: true,
+      wrapAround: true,
+      autoPlay: 5000,
+      pageDots: true,
+      prevNextButtons: true,
+    });
+
+    const scrollIndicator = document.querySelector(".scroll-indicator");
+    let scrollTimeout;
+
+    function handleScroll() {
+      if (window.scrollY > 100) {
+        scrollIndicator.classList.add("hidden");
+      } else {
+        scrollIndicator.classList.remove("hidden");
+      }
+    }
+
+    window.addEventListener("scroll", () => {
+      if (!scrollTimeout) {
+        scrollTimeout = setTimeout(() => {
+          handleScroll();
+          scrollTimeout = null;
+        }, 100);
+      }
+    });
+  </script>
+{% endblock %}

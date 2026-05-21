@@ -244,7 +244,7 @@ const arrays = { position: [-1,-1,0, 1,-1,0, -1,1,0, -1,1,0, 1,-1,0, 1,1,0] };
 const bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays);
 
 const noiseTexture = twgl.createTexture(gl, {
-  src: "/img/noise.png", min: gl.LINEAR, mag: gl.LINEAR, wrap: gl.REPEAT,
+  src: "/assets/img/noise.png", min: gl.LINEAR, mag: gl.LINEAR, wrap: gl.REPEAT,
 }, () => { requestAnimationFrame(render); });
 
 // State
@@ -427,7 +427,7 @@ window.exportPNG = function() {
         document.getElementById("status").textContent = "Exported!";
       }, "image/png");
     };
-    img.src = "/img/noise.png";
+    img.src = "/assets/img/noise.png";
   }, 50);
 };
 

@@ -11,7 +11,7 @@ const arrays = {
 };
 const bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays);
 
-const noiseTexture = twgl.createTexture(gl, { src: "/img/noise.png", min: gl.LINEAR, max: gl.LINEAR }, () => {
+const noiseTexture = twgl.createTexture(gl, { src: "/assets/img/noise.png", min: gl.LINEAR, max: gl.LINEAR }, () => {
   requestAnimationFrame(render);
   gsap.to(anims, {
     delta: 0.5,
