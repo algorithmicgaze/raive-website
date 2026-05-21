@@ -1,0 +1,14 @@
+{
+  "name": "raive-school",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "images": "node scripts/process-images.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "sharp": "^0.33.5"
+  }
+}

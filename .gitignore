@@ -1,3 +1,5 @@
 raw_pictures/
 .playwright-mcp/
-
+node_modules/
+_site/
+.DS_Store

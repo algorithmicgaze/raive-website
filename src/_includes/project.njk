@@ -1,0 +1,44 @@
+{% extends "base.njk" %}
+
+{% set bodyClass = "has-solid-header" %}
+
+{% block body %}
+  <main class="project-page">
+    <header class="project-header">
+      <p class="edition-tag">{{ edition }}</p>
+      <h1>{{ title }}</h1>
+      {% if group %}<p class="group">{{ group }}</p>{% endif %}
+      <p class="artists">{{ artists | join(" · ") }}</p>
+    </header>
+
+    {% if hero %}
+      <figure class="project-hero">
+        <img src="./images/{{ hero }}" alt="{{ title }} — lead image" />
+      </figure>
+    {% endif %}
+
+    <div class="project-body">
+      {{ content | safe }}
+    </div>
+
+    {% if video %}
+      <div class="project-video">
+        <div class="video-container">
+          <iframe src="{{ video | replace('watch?v=', 'embed/') }}" title="{{ title }}" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if gallery and gallery.length %}
+      <section class="project-gallery">
+        {% for img in gallery %}
+          <img src="./images/{{ img }}" alt="" loading="lazy" />
+        {% endfor %}
+      </section>
+    {% endif %}
+
+    <a class="back-link" href="/archive/">← Back to archive</a>
+  </main>
+  <script src="/assets/js/lightbox.js" defer></script>
+{% endblock %}

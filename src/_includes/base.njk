@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if title %}{{ title }} — {% endif %}{{ site.title }}</title>
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inika-v21-latin-regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inika-v21-latin-700.woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    {% block head %}{% endblock %}
+  </head>
+  <body class="{{ bodyClass }}">
+    {% include "header.njk" %}
+    {% block body %}{% endblock %}
+  </body>
+</html>
