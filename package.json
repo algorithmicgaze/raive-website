@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "eleventy",
-    "serve": "eleventy --serve",
+    "dev": "eleventy --serve",
     "images": "node scripts/process-images.mjs"
   },
   "devDependencies": {
