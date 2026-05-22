@@ -21,11 +21,8 @@ gallery:
   - de-nest-51.jpg
 ---
 
-Performance of *HANDS OFF* by The Nest at convergence 2026, hosted by research group CREATIE at De Singel Antwerpen.
+HANDS OFF! is an interactive audiovisual performance built around the principle of call and response, where melodies and visual patterns are generated from a library of Ukrainian folk culture and incoming live data. As the pianist performs, the system continuously receives, processes, and transforms this information into audiovisual responses — functioning as a mirror between performer and AI. The result is an evolving dialogue between tradition and technology, human expression and machine interpretation.
 
-## The Nest
+## Team
 
-- Daniil Getman
-- Francesco Campora
-- Christian Johannes
-- Nigel Dubois
+The Nest is an audiovisual collective that connects traditional musical concepts with emerging technologies and live performance. Formed during RAIVE summer school 2025, the collective brings together sound, algorithms, live data, and visual media into immersive works.
