@@ -1,0 +1,4 @@
+# Serve the custom 404 page with a real 404 status for unmatched routes.
+# Static assets take precedence; this only catches genuinely-missing paths,
+# overriding the project's single-page-application not-found fallback.
+/* /404.html 404

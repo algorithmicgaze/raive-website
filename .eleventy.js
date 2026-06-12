@@ -3,6 +3,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/projects/**/images/**");
   eleventyConfig.addPassthroughCopy("print.html");
   eleventyConfig.addPassthroughCopy("CNAME");
+  eleventyConfig.addPassthroughCopy("_redirects");
 
   eleventyConfig.addCollection("projects", (api) =>
     api.getFilteredByTag("projects").sort((a, b) => b.date - a.date),
