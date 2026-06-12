@@ -2,7 +2,6 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy("src/projects/**/images/**");
   eleventyConfig.addPassthroughCopy("print.html");
-  eleventyConfig.addPassthroughCopy("CNAME");
   eleventyConfig.addPassthroughCopy("_redirects");
 
   eleventyConfig.addCollection("projects", (api) =>
