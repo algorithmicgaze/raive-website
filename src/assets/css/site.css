@@ -557,6 +557,28 @@ figcaption {
   color: rgba(255, 255, 255, 0.8);
 }
 
+.section-credits {
+  margin: 0;
+  padding: 2rem 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.section-credits .container {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-credits p {
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.section-credits a {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .newsletter-form {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
